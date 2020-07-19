@@ -10,7 +10,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            LinearGradient(
+                gradient: .init(colors: [
+                    .accentOrange,
+                    .accentPeachy,
+                    .accentRed
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+            ).edgesIgnoringSafeArea(.all)
+            
+            ScrollView(.vertical, showsIndicators: true) {
+                AuthenticationView()
+            }
+        }
     }
 }
 
