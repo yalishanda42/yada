@@ -19,6 +19,10 @@
 		7411BF3224C4E75600F90E81 /* Image+custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3124C4E75600F90E81 /* Image+custom.swift */; };
 		7411BF3724C4EFC100F90E81 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3624C4EFC100F90E81 /* AuthenticationView.swift */; };
 		7411BF3924C4EFC900F90E81 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3824C4EFC900F90E81 /* LoginView.swift */; };
+		7411BF3C24C62AAF00F90E81 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3B24C62AAF00F90E81 /* MainView.swift */; };
+		7411BF3E24C62D2F00F90E81 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3D24C62D2F00F90E81 /* MessagesView.swift */; };
+		7411BF4024C62D3E00F90E81 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3F24C62D3E00F90E81 /* MatchView.swift */; };
+		7411BF4224C62D4C00F90E81 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF4124C62D4C00F90E81 /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		7411BF3124C4E75600F90E81 /* Image+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+custom.swift"; sourceTree = "<group>"; };
 		7411BF3624C4EFC100F90E81 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		7411BF3824C4EFC900F90E81 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7411BF3B24C62AAF00F90E81 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7411BF3D24C62D2F00F90E81 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		7411BF3F24C62D3E00F90E81 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		7411BF4124C62D4C00F90E81 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +99,11 @@
 			children = (
 				7411BF0924C4C51D00F90E81 /* AppDelegate.swift */,
 				7411BF0B24C4C51D00F90E81 /* SceneDelegate.swift */,
+				7411BF3B24C62AAF00F90E81 /* MainView.swift */,
 				7411BF3424C4EF5000F90E81 /* Authentication */,
+				7411BF4324C62D7B00F90E81 /* Messages */,
+				7411BF4424C62D8200F90E81 /* Match */,
+				7411BF4524C62D8700F90E81 /* Account */,
 				7411BF3A24C4F05400F90E81 /* Extensions */,
 				7411BF3324C4EF3D00F90E81 /* Supporting Files */,
 				7411BF1124C4C51F00F90E81 /* Preview Content */,
@@ -152,6 +164,30 @@
 				7411BF2D24C4CA8600F90E81 /* Color+custom.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7411BF4324C62D7B00F90E81 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				7411BF3D24C62D2F00F90E81 /* MessagesView.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		7411BF4424C62D8200F90E81 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				7411BF3F24C62D3E00F90E81 /* MatchView.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		7411BF4524C62D8700F90E81 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				7411BF4124C62D4C00F90E81 /* AccountView.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,9 +293,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7411BF0A24C4C51D00F90E81 /* AppDelegate.swift in Sources */,
+				7411BF3C24C62AAF00F90E81 /* MainView.swift in Sources */,
+				7411BF3E24C62D2F00F90E81 /* MessagesView.swift in Sources */,
 				7411BF0C24C4C51D00F90E81 /* SceneDelegate.swift in Sources */,
+				7411BF4224C62D4C00F90E81 /* AccountView.swift in Sources */,
 				7411BF3024C4CBC800F90E81 /* String+localized.swift in Sources */,
 				7411BF3724C4EFC100F90E81 /* AuthenticationView.swift in Sources */,
+				7411BF4024C62D3E00F90E81 /* MatchView.swift in Sources */,
 				7411BF2E24C4CA8600F90E81 /* Color+custom.swift in Sources */,
 				7411BF3224C4E75600F90E81 /* Image+custom.swift in Sources */,
 				7411BF3924C4EFC900F90E81 /* LoginView.swift in Sources */,
