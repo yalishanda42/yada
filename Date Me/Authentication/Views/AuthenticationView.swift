@@ -24,18 +24,14 @@ struct AuthenticationView: View {
                 SegmentButton(
                     text: "Existing",
                     index: 0,
-                    currentIndex: index
-                ) {
-                    self.index = 0
-                }
+                    currentIndex: $index
+                )
                 
                 SegmentButton(
                     text: "New",
                     index: 1,
-                    currentIndex: index
-                ) {
-                    self.index = 1
-                }
+                    currentIndex: $index
+                )
             }.background(Color.black.opacity(0.1))
             .clipShape(Capsule())
             .padding(.top, 25)
@@ -88,8 +84,7 @@ struct SegmentButton: View {
     
     let text: String
     let index: Int
-    let currentIndex: Int
-    let action: () -> Void
+    @Binding var currentIndex: Int
     
     var body: some View {
         Button(action: {
@@ -98,7 +93,7 @@ struct SegmentButton: View {
                 dampingFraction: 0.5,
                 blendDuration: 0.5
             )) {
-                self.action()
+                self.currentIndex = self.index
             }
         }) {
             Text(text.localized)
