@@ -8,20 +8,16 @@
 
 import SwiftUI
 
-struct LoginView: View {
-    
-    let mode: Mode
-    
-    @State var email = ""
-    @State var pass = ""
-    @State var pass2 = ""
+struct LoginFormView: View {
+        
+    @ObservedObject var viewModel: LoginFormViewModel
     
     var body: some View {
         VStack {
             VStack {
                 HStack(spacing: 15) {
                     Image(systemName: "envelope").foregroundColor(.black)
-                    TextField("Enter e-mail address".localized, text: $email)
+                    TextField("Enter e-mail address".localized, text: $viewModel.emailText)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -32,14 +28,14 @@ struct LoginView: View {
                         .frame(width: 15, height: 18)
                         .foregroundColor(.black)
                     
-                    SecureField("Enter password".localized, text: $pass)
+                    SecureField("Enter password".localized, text: $viewModel.passwordText)
                     
                     Button(action: {}) {
                         Image(systemName: "eye").foregroundColor(.black)
                     }
                 }.padding(.vertical, 20)
                 
-                if mode == .signUp {
+                if viewModel.mode == .signUp {
                     Divider()
                     
                     HStack(spacing: 15) {
@@ -48,7 +44,7 @@ struct LoginView: View {
                             .frame(width: 15, height: 18)
                             .foregroundColor(.black)
                         
-                        SecureField("Repeat password".localized, text: $pass2)
+                        SecureField("Repeat password".localized, text: $viewModel.passwordRepeatedText)
                         
                         Button(action: {}) {
                             Image(systemName: "eye").foregroundColor(.black)
@@ -62,8 +58,9 @@ struct LoginView: View {
             .cornerRadius(10)
             
             Button(action: {
+                self.viewModel.buttonTap.send()
             }) {
-                Text(mode.buttonText.localized.uppercased())
+                Text(viewModel.mode.buttonText.localized.uppercased())
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)
@@ -80,22 +77,6 @@ struct LoginView: View {
             .offset(y: -40)
             .padding(.bottom, -40)
             .shadow(radius: 15)
-        }
-    }
-}
-
-extension LoginView {
-    enum Mode {
-        case signIn
-        case signUp
-        
-        var buttonText: String {
-            switch self {
-            case .signIn:
-                return "Login"
-            case .signUp:
-                return "Sign up"
-            }
         }
     }
 }

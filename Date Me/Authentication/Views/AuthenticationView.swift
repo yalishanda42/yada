@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    @State var index = 0
+    @ObservedObject var viewModel: AuthenticationViewModel
         
     var body: some View {
         ZStack {
@@ -34,23 +34,23 @@ struct AuthenticationView: View {
                     
                     HStack {
                         SegmentButton(
-                            text: "Existing",
+                            text: "Existing".localized,
                             index: 0,
-                            currentIndex: $index
+                            currentIndex: $viewModel.mode.buttonIndex
                         )
                         
                         SegmentButton(
-                            text: "New",
+                            text: "New".localized,
                             index: 1,
-                            currentIndex: $index
+                            currentIndex: $viewModel.mode.buttonIndex
                         )
                     }.background(Color.black.opacity(0.1))
                     .clipShape(Capsule())
                     .padding(.top, 25)
                     
-                    LoginView(mode: index == 0 ? .signIn : .signUp)
+                    LoginFormView(viewModel: viewModel.loginFormViewModel)
                     
-                    if index == 0 {
+                    if viewModel.mode.buttonIndex == 0 {
                         Button(action: {
                         }) {
                             Text("Forgot password?".localized).foregroundColor(.white)
@@ -122,6 +122,6 @@ struct SegmentButton: View {
 
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView()
+        AuthenticationView(viewModel: AuthenticationViewModel())
     }
 }
