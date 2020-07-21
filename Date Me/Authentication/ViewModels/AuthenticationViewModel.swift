@@ -16,6 +16,8 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     lazy var loginFormViewModel = LoginFormViewModel(mode: mode)
+    
+    lazy var signInFinished = loginFormViewModel.buttonTap.eraseToAnyPublisher()
 }
 
 extension AuthenticationViewModel {

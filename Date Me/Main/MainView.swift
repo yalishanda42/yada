@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @ObservedObject var viewModel: MainViewModel
+    
     var body: some View {
         TabView {
             MessagesView().tabItem {
@@ -29,6 +32,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainViewModel())
     }
 }
