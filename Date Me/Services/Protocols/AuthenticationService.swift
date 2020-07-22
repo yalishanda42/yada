@@ -22,6 +22,7 @@ enum AuthenticationError: Error {
     case invalidEmail
     case networkError
     case weakPassword
+    case wrongPassword
     
     case unknown
     
@@ -37,6 +38,8 @@ enum AuthenticationError: Error {
             return "Network error. Please try again.".localized
         case .weakPassword:
             return "Your password is too weak".localized
+        case .wrongPassword:
+            return "Your password is wrong".localized
         case .unknown:
             return "Unknown error occurred".localized
         }

@@ -60,6 +60,7 @@ extension Error {
             return .invalidEmail
         case .networkError: return .networkError
         case .weakPassword: return .weakPassword
+        case .wrongPassword: return .wrongPassword
         default:
             return .unknown
         }

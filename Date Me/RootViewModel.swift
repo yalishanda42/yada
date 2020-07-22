@@ -28,7 +28,6 @@ class RootViewModel: ObservableObject {
         let signUpSuccess = authenticationViewModel.signUpTapped.flatMap(signUpPublisher)
         
         Publishers.Merge(signUpSuccess, authenticationViewModel.logInTapped)
-            .map { _ in }
             .flatMap(signInPublisher)
             .sink { _ in }
             .store(in: &disposeBag)
