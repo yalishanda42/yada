@@ -11,12 +11,14 @@ import SwiftUI
 class FlowController {
     
     lazy var rootView: RootView = RootView(viewModel: rootViewModel)
-    lazy var rootViewModel = RootViewModel()
+    lazy var rootViewModel = RootViewModel(authenticationService: services.authenticationService)
     
     let window: UIWindow
+    let services: ServiceDepdendencies
     
-    init(in window: UIWindow) {
+    init(in window: UIWindow, services: ServiceDepdendencies) {
         self.window = window
+        self.services = services
         
         window.rootViewController = UIHostingController(rootView: rootView)
         window.makeKeyAndVisible()

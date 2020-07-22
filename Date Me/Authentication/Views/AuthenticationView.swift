@@ -34,14 +34,12 @@ struct AuthenticationView: View {
                     
                     HStack {
                         SegmentButton(
-                            text: "Existing".localized,
-                            index: 0,
+                            associatedMode: .signIn,
                             currentIndex: $viewModel.mode.buttonIndex
                         )
                         
                         SegmentButton(
-                            text: "New".localized,
-                            index: 1,
+                            associatedMode: .signUp,
                             currentIndex: $viewModel.mode.buttonIndex
                         )
                     }.background(Color.black.opacity(0.1))
@@ -96,21 +94,20 @@ struct AuthenticationView: View {
 
 struct SegmentButton: View {
     
-    let text: String
-    let index: Int
+    let associatedMode: AuthenticationViewModel.Mode
     @Binding var currentIndex: Int
+    
+    var index: Int {
+        associatedMode.buttonIndex
+    }
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring(
-                response: 0.8,
-                dampingFraction: 0.5,
-                blendDuration: 0.5
-            )) {
+            withAnimation(.spring()) {
                 self.currentIndex = self.index
             }
         }) {
-            Text(text.localized)
+            Text(associatedMode.segmentButtonTitle)
                 .foregroundColor(self.currentIndex == index ? .black : .white)
                 .fontWeight(.bold)
                 .padding(.vertical, 10)

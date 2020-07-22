@@ -60,7 +60,7 @@ struct LoginFormView: View {
             Button(action: {
                 self.viewModel.buttonTap.send()
             }) {
-                Text(viewModel.mode.buttonText.localized.uppercased())
+                Text(viewModel.mode.buttonText.uppercased())
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)

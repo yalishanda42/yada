@@ -6,18 +6,66 @@
 //  Copyright © 2020 Alexander Ignatov. All rights reserved.
 //
 
+import Foundation
 import Combine
 
 class RootViewModel: ObservableObject {
     @Published var authenticationIsPresented = true
+    @Published var simpleAlertIsPresented = false
+    @Published var simpleAlertText = ""
     let authenticationViewModel = AuthenticationViewModel()
     let mainViewModel = MainViewModel()
-       
-   private var disposeBag: Set<AnyCancellable> = []
-   
-   init() {
-       authenticationViewModel.signInFinished.sink { [weak self] _ in
-           self?.authenticationIsPresented = false
-       }.store(in: &disposeBag)
-   }
+
+    private var disposeBag: Set<AnyCancellable> = []
+    private let authenticationService: AuthenticationService
+
+    init(authenticationService: AuthenticationService) {
+        self.authenticationService = authenticationService
+        declareSubscriptions()
+    }
+    
+    private func declareSubscriptions() {
+        authenticationViewModel.logInTapped
+            .setFailureType(to: AuthenticationError.self)
+            .flatMap(self.signInPublisher)
+            .sink(receiveCompletion: { [weak self] completionType in
+                if case .failure(let error) = completionType {
+                    self?.simpleAlertText = error.localizedErrorMessage
+                    self?.simpleAlertIsPresented = true
+                }
+            }, receiveValue: { _ in })
+            .store(in: &disposeBag)
+        
+        authenticationViewModel.signUpTapped
+            .setFailureType(to: AuthenticationError.self)
+            .flatMap(self.signUpPublisher)
+            .flatMap(self.signInPublisher)
+            .sink(receiveCompletion: { [weak self] completionType in
+                if case .failure(let error) = completionType {
+                    self?.simpleAlertText = error.localizedErrorMessage
+                    self?.simpleAlertIsPresented = true
+                }
+            }, receiveValue: { _ in })
+            .store(in: &disposeBag)
+        
+        authenticationService.isAuthenticated
+            .subscribe(on: DispatchQueue.main)
+            .sink { [weak self] isAuthenticated in
+                if isAuthenticated {
+                    self?.authenticationIsPresented = false
+                }
+            }.store(in: &disposeBag)
+    }
+    
+    private func signInPublisher() -> AnyPublisher<Void, AuthenticationError> {
+        let email = self.authenticationViewModel.loginFormViewModel.emailText
+        let passw = self.authenticationViewModel.loginFormViewModel.passwordText
+        return self.authenticationService.logInWithEmail(email: email, password: passw)
+    }
+    
+    private func signUpPublisher() -> AnyPublisher<Void, AuthenticationError> {
+        let email = self.authenticationViewModel.loginFormViewModel.emailText
+        let passw = self.authenticationViewModel.loginFormViewModel.passwordText
+        return self.authenticationService.signUpWithEmail(email: email, password: passw)
+    }
 }

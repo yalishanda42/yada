@@ -12,15 +12,26 @@ struct RootView: View {
     
     @ObservedObject var viewModel: RootViewModel
     
-    var body: some View {
+    private var currentView: some View {
         viewModel.authenticationIsPresented
             ? AnyView(AuthenticationView(viewModel: viewModel.authenticationViewModel))
             : AnyView(MainView(viewModel: viewModel.mainViewModel))
+    }
+    
+    var body: some View {
+        currentView.alert(isPresented: $viewModel.simpleAlertIsPresented) {
+            Alert(
+                title: Text("Error".localized),
+                message: Text(viewModel.simpleAlertText),
+                dismissButton: .default(Text("OK".localized),
+                                        action: { self.viewModel.simpleAlertIsPresented = false })
+            )
+        }
     }
 }
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(viewModel: RootViewModel())
+        RootView(viewModel: RootViewModel(authenticationService: PreviewAuthenticationService()))
     }
 }

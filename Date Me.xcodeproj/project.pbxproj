@@ -29,8 +29,14 @@
 		7442194E24C784E700B4A7D5 /* LoginFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442194D24C784E700B4A7D5 /* LoginFormViewModel.swift */; };
 		745882F324C78A4400A11C12 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745882F224C78A4400A11C12 /* FlowController.swift */; };
 		745882F624C78C0600A11C12 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745882F524C78C0600A11C12 /* MainViewModel.swift */; };
+		74824B9924C8502000008B49 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9824C8502000008B49 /* ServiceDependencies.swift */; };
+		74824B9B24C8506600008B49 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9A24C8506600008B49 /* AuthenticationService.swift */; };
+		74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */; };
+		74824BA124C850B800008B49 /* AppServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824BA024C850B800008B49 /* AppServiceDependencies.swift */; };
 		7485402424C7933F0077A31D /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485402324C7933F0077A31D /* RootViewModel.swift */; };
 		7485402624C793470077A31D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485402524C793470077A31D /* RootView.swift */; };
+		74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */; };
+		74D53AE824C8624500D4C29A /* PreviewServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */; };
 		B0D8513858870AA297A405C7 /* Pods_Date_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FA96AF94440EDD89ADAB61 /* Pods_Date_Me.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +79,14 @@
 		7442194D24C784E700B4A7D5 /* LoginFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewModel.swift; sourceTree = "<group>"; };
 		745882F224C78A4400A11C12 /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		745882F524C78C0600A11C12 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		74824B9824C8502000008B49 /* ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDependencies.swift; sourceTree = "<group>"; };
+		74824B9A24C8506600008B49 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAuthenticationService.swift; sourceTree = "<group>"; };
+		74824BA024C850B800008B49 /* AppServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceDependencies.swift; sourceTree = "<group>"; };
 		7485402324C7933F0077A31D /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		7485402524C793470077A31D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationService.swift; sourceTree = "<group>"; };
+		74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewServiceDependencies.swift; sourceTree = "<group>"; };
 		90FA96AF94440EDD89ADAB61 /* Pods_Date_Me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Date_Me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2897126401359F02A19924 /* Pods-Date Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date Me.release.xcconfig"; path = "Target Support Files/Pods-Date Me/Pods-Date Me.release.xcconfig"; sourceTree = "<group>"; };
 		F0E9456C7EE90E8F62DCB785 /* Pods-Date Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date Me.debug.xcconfig"; path = "Target Support Files/Pods-Date Me/Pods-Date Me.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +145,7 @@
 				7411BF4324C62D7B00F90E81 /* Messages */,
 				7411BF4424C62D8200F90E81 /* Match */,
 				7411BF4524C62D8700F90E81 /* Account */,
+				74824B9724C84FD900008B49 /* Services */,
 				7411BF3A24C4F05400F90E81 /* Extensions */,
 				7411BF3324C4EF3D00F90E81 /* Supporting Files */,
 				7411BF1124C4C51F00F90E81 /* Preview Content */,
@@ -172,8 +185,8 @@
 		7411BF3424C4EF5000F90E81 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				7442194A24C77CBD00B4A7D5 /* ViewModels */,
 				7411BF3524C4EF5800F90E81 /* Views */,
+				7442194A24C77CBD00B4A7D5 /* ViewModels */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -237,6 +250,51 @@
 				745882F524C78C0600A11C12 /* MainViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		74824B9724C84FD900008B49 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				74824B9824C8502000008B49 /* ServiceDependencies.swift */,
+				74824BA024C850B800008B49 /* AppServiceDependencies.swift */,
+				74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */,
+				74824B9E24C8507F00008B49 /* Protocols */,
+				74824B9F24C8508C00008B49 /* Implementations */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		74824B9E24C8507F00008B49 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				74824B9A24C8506600008B49 /* AuthenticationService.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		74824B9F24C8508C00008B49 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				74D53AE924C8625700D4C29A /* App */,
+				74D53AEA24C8625D00D4C29A /* Preview */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		74D53AE924C8625700D4C29A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		74D53AEA24C8625D00D4C29A /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 		892018A0A4FF7DD487E8B5D8 /* Pods */ = {
@@ -430,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7442194C24C77D1A00B4A7D5 /* AuthenticationViewModel.swift in Sources */,
+				74824BA124C850B800008B49 /* AppServiceDependencies.swift in Sources */,
 				7411BF0A24C4C51D00F90E81 /* AppDelegate.swift in Sources */,
 				7411BF3C24C62AAF00F90E81 /* MainView.swift in Sources */,
 				7485402624C793470077A31D /* RootView.swift in Sources */,
@@ -443,6 +502,11 @@
 				7442194E24C784E700B4A7D5 /* LoginFormViewModel.swift in Sources */,
 				7411BF4024C62D3E00F90E81 /* MatchView.swift in Sources */,
 				7411BF2E24C4CA8600F90E81 /* Color+custom.swift in Sources */,
+				74824B9924C8502000008B49 /* ServiceDependencies.swift in Sources */,
+				74824B9B24C8506600008B49 /* AuthenticationService.swift in Sources */,
+				74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */,
+				74D53AE824C8624500D4C29A /* PreviewServiceDependencies.swift in Sources */,
+				74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */,
 				7411BF3224C4E75600F90E81 /* Image+custom.swift in Sources */,
 				7485402424C7933F0077A31D /* RootViewModel.swift in Sources */,
 				7411BF3924C4EFC900F90E81 /* LoginFormView.swift in Sources */,
