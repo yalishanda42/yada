@@ -25,27 +25,12 @@ class RootViewModel: ObservableObject {
     }
     
     private func declareSubscriptions() {
-        authenticationViewModel.logInTapped
-            .setFailureType(to: AuthenticationError.self)
-            .flatMap(self.signInPublisher)
-            .sink(receiveCompletion: { [weak self] completionType in
-                if case .failure(let error) = completionType {
-                    self?.simpleAlertText = error.localizedErrorMessage
-                    self?.simpleAlertIsPresented = true
-                }
-            }, receiveValue: { _ in })
-            .store(in: &disposeBag)
+        let signUpSuccess = authenticationViewModel.signUpTapped.flatMap(signUpPublisher)
         
-        authenticationViewModel.signUpTapped
-            .setFailureType(to: AuthenticationError.self)
-            .flatMap(self.signUpPublisher)
-            .flatMap(self.signInPublisher)
-            .sink(receiveCompletion: { [weak self] completionType in
-                if case .failure(let error) = completionType {
-                    self?.simpleAlertText = error.localizedErrorMessage
-                    self?.simpleAlertIsPresented = true
-                }
-            }, receiveValue: { _ in })
+        Publishers.Merge(signUpSuccess, authenticationViewModel.logInTapped)
+            .map { _ in }
+            .flatMap(signInPublisher)
+            .sink { _ in }
             .store(in: &disposeBag)
         
         authenticationService.isAuthenticated
@@ -57,15 +42,27 @@ class RootViewModel: ObservableObject {
             }.store(in: &disposeBag)
     }
     
-    private func signInPublisher() -> AnyPublisher<Void, AuthenticationError> {
+    private func signInPublisher() -> AnyPublisher<Void, Never> {
         let email = self.authenticationViewModel.loginFormViewModel.emailText
         let passw = self.authenticationViewModel.loginFormViewModel.passwordText
-        return self.authenticationService.logInWithEmail(email: email, password: passw)
+        return self.authenticationService
+            .logInWithEmail(email: email, password: passw)
+            .catch { [weak self] error -> Empty<Void, Never> in
+                self?.simpleAlertText = error.localizedErrorMessage
+                self?.simpleAlertIsPresented = true
+                return Empty(completeImmediately: true)
+            }.eraseToAnyPublisher()
     }
     
-    private func signUpPublisher() -> AnyPublisher<Void, AuthenticationError> {
+    private func signUpPublisher() -> AnyPublisher<Void, Never> {
         let email = self.authenticationViewModel.loginFormViewModel.emailText
         let passw = self.authenticationViewModel.loginFormViewModel.passwordText
-        return self.authenticationService.signUpWithEmail(email: email, password: passw)
+        return self.authenticationService
+            .signUpWithEmail(email: email, password: passw)
+            .catch { [weak self] error -> Empty<Void, Never> in
+                self?.simpleAlertText = error.localizedErrorMessage
+                self?.simpleAlertIsPresented = true
+                return Empty(completeImmediately: true)
+            }.eraseToAnyPublisher()
     }
 }
