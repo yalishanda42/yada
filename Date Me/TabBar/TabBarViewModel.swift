@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  TabBarViewModel.swift
 //  Date Me
 //
 //  Created by Alexander Ignatov on 21.07.20.
@@ -8,5 +8,5 @@
 
 import Combine
 
-class MainViewModel: ObservableObject {
+class TabBarViewModel: ObservableObject {
 }

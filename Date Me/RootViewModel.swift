@@ -13,14 +13,15 @@ class RootViewModel: ObservableObject {
     @Published var authenticationIsPresented = true
     @Published var simpleAlertIsPresented = false
     @Published var simpleAlertText = ""
+    
     let authenticationViewModel = AuthenticationViewModel()
-    let mainViewModel = MainViewModel()
+    let mainViewModel = TabBarViewModel()
 
     private var disposeBag: Set<AnyCancellable> = []
-    private let authenticationService: AuthenticationService
+    private let services: ServiceDepdendencies
 
-    init(authenticationService: AuthenticationService) {
-        self.authenticationService = authenticationService
+    init(services: ServiceDepdendencies) {
+        self.services = services
         declareSubscriptions()
     }
     
@@ -32,7 +33,7 @@ class RootViewModel: ObservableObject {
             .sink { _ in }
             .store(in: &disposeBag)
         
-        authenticationService.isAuthenticated
+        services.authenticationService.isAuthenticated
             .subscribe(on: DispatchQueue.main)
             .sink { [weak self] isAuthenticated in
                 if isAuthenticated {
@@ -44,7 +45,7 @@ class RootViewModel: ObservableObject {
     private func signInPublisher() -> AnyPublisher<Void, Never> {
         let email = self.authenticationViewModel.loginFormViewModel.emailText
         let passw = self.authenticationViewModel.loginFormViewModel.passwordText
-        return self.authenticationService
+        return self.services.authenticationService
             .logInWithEmail(email: email, password: passw)
             .catch { [weak self] error -> Empty<Void, Never> in
                 self?.simpleAlertText = error.localizedErrorMessage
@@ -56,7 +57,7 @@ class RootViewModel: ObservableObject {
     private func signUpPublisher() -> AnyPublisher<Void, Never> {
         let email = self.authenticationViewModel.loginFormViewModel.emailText
         let passw = self.authenticationViewModel.loginFormViewModel.passwordText
-        return self.authenticationService
+        return self.services.authenticationService
             .signUpWithEmail(email: email, password: passw)
             .catch { [weak self] error -> Empty<Void, Never> in
                 self?.simpleAlertText = error.localizedErrorMessage

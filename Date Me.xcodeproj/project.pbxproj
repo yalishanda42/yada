@@ -18,7 +18,7 @@
 		7411BF3224C4E75600F90E81 /* Image+custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3124C4E75600F90E81 /* Image+custom.swift */; };
 		7411BF3724C4EFC100F90E81 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3624C4EFC100F90E81 /* AuthenticationView.swift */; };
 		7411BF3924C4EFC900F90E81 /* LoginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3824C4EFC900F90E81 /* LoginFormView.swift */; };
-		7411BF3C24C62AAF00F90E81 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3B24C62AAF00F90E81 /* MainView.swift */; };
+		7411BF3C24C62AAF00F90E81 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3B24C62AAF00F90E81 /* TabBar.swift */; };
 		7411BF3E24C62D2F00F90E81 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3D24C62D2F00F90E81 /* MessagesView.swift */; };
 		7411BF4024C62D3E00F90E81 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF3F24C62D3E00F90E81 /* MatchView.swift */; };
 		7411BF4224C62D4C00F90E81 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF4124C62D4C00F90E81 /* AccountView.swift */; };
@@ -26,7 +26,7 @@
 		7442194C24C77D1A00B4A7D5 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442194B24C77D1A00B4A7D5 /* AuthenticationViewModel.swift */; };
 		7442194E24C784E700B4A7D5 /* LoginFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442194D24C784E700B4A7D5 /* LoginFormViewModel.swift */; };
 		7443CC3A24CA2FC7008830C7 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CC3924CA2FC7008830C7 /* App.swift */; };
-		745882F624C78C0600A11C12 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745882F524C78C0600A11C12 /* MainViewModel.swift */; };
+		745882F624C78C0600A11C12 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745882F524C78C0600A11C12 /* TabBarViewModel.swift */; };
 		74824B9924C8502000008B49 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9824C8502000008B49 /* ServiceDependencies.swift */; };
 		74824B9B24C8506600008B49 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9A24C8506600008B49 /* AuthenticationService.swift */; };
 		74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */; };
@@ -66,7 +66,7 @@
 		7411BF3124C4E75600F90E81 /* Image+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+custom.swift"; sourceTree = "<group>"; };
 		7411BF3624C4EFC100F90E81 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		7411BF3824C4EFC900F90E81 /* LoginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormView.swift; sourceTree = "<group>"; };
-		7411BF3B24C62AAF00F90E81 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7411BF3B24C62AAF00F90E81 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		7411BF3D24C62D2F00F90E81 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		7411BF3F24C62D3E00F90E81 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		7411BF4124C62D4C00F90E81 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		7442194B24C77D1A00B4A7D5 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		7442194D24C784E700B4A7D5 /* LoginFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewModel.swift; sourceTree = "<group>"; };
 		7443CC3924CA2FC7008830C7 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		745882F524C78C0600A11C12 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		745882F524C78C0600A11C12 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		74824B9824C8502000008B49 /* ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDependencies.swift; sourceTree = "<group>"; };
 		74824B9A24C8506600008B49 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAuthenticationService.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				7443CC3924CA2FC7008830C7 /* App.swift */,
 				7485402524C793470077A31D /* RootView.swift */,
 				7485402324C7933F0077A31D /* RootViewModel.swift */,
-				745882F424C78BFA00A11C12 /* Main */,
+				745882F424C78BFA00A11C12 /* TabBar */,
 				7411BF3424C4EF5000F90E81 /* Authentication */,
 				7411BF4324C62D7B00F90E81 /* Messages */,
 				7411BF4424C62D8200F90E81 /* Match */,
@@ -237,13 +237,13 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		745882F424C78BFA00A11C12 /* Main */ = {
+		745882F424C78BFA00A11C12 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				7411BF3B24C62AAF00F90E81 /* MainView.swift */,
-				745882F524C78C0600A11C12 /* MainViewModel.swift */,
+				7411BF3B24C62AAF00F90E81 /* TabBar.swift */,
+				745882F524C78C0600A11C12 /* TabBarViewModel.swift */,
 			);
-			path = Main;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		74824B9724C84FD900008B49 /* Services */ = {
@@ -483,10 +483,10 @@
 			files = (
 				7442194C24C77D1A00B4A7D5 /* AuthenticationViewModel.swift in Sources */,
 				74824BA124C850B800008B49 /* AppServiceDependencies.swift in Sources */,
-				7411BF3C24C62AAF00F90E81 /* MainView.swift in Sources */,
+				7411BF3C24C62AAF00F90E81 /* TabBar.swift in Sources */,
 				7485402624C793470077A31D /* RootView.swift in Sources */,
 				7411BF3E24C62D2F00F90E81 /* MessagesView.swift in Sources */,
-				745882F624C78C0600A11C12 /* MainViewModel.swift in Sources */,
+				745882F624C78C0600A11C12 /* TabBarViewModel.swift in Sources */,
 				7411BF4224C62D4C00F90E81 /* AccountView.swift in Sources */,
 				7411BF3024C4CBC800F90E81 /* String+localized.swift in Sources */,
 				7411BF3724C4EFC100F90E81 /* AuthenticationView.swift in Sources */,

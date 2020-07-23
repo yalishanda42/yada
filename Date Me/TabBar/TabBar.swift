@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  TabBar.swift
 //  Date Me
 //
 //  Created by Alexander Ignatov on 20.07.20.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct TabBar: View {
     
-    @StateObject var viewModel: MainViewModel
+    @StateObject var viewModel: TabBarViewModel
     
     var body: some View {
         TabView {
@@ -30,8 +30,8 @@ struct MainView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainViewModel())
+        TabBar(viewModel: TabBarViewModel())
     }
 }

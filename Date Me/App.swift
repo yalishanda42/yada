@@ -11,25 +11,17 @@ import Firebase
 
 @main
 struct DateMeApp: App {
-    
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+        
     private static let services = AppServiceDependencies()
-    private static let rootViewModel = RootViewModel(authenticationService: services.authenticationService)
+    private static let rootViewModel = RootViewModel(services: services)
     
     var body: some Scene {
         WindowGroup {
             RootView(viewModel: DateMeApp.rootViewModel)
         }
     }
-}
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
-    ) -> Bool {
+    
+    init() {
         FirebaseApp.configure()
-        return true
     }
 }

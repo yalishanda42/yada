@@ -15,7 +15,7 @@ struct RootView: View {
     private var currentView: some View {
         viewModel.authenticationIsPresented
             ? AnyView(AuthenticationView(viewModel: viewModel.authenticationViewModel))
-            : AnyView(MainView(viewModel: viewModel.mainViewModel))
+            : AnyView(TabBar(viewModel: viewModel.mainViewModel))
     }
     
     var body: some View {
@@ -32,6 +32,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(viewModel: RootViewModel(authenticationService: PreviewAuthenticationService()))
+        RootView(viewModel: RootViewModel(services: PreviewServiceDependencies()))
     }
 }
