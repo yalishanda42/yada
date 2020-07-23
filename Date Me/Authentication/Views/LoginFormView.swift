@@ -12,6 +12,9 @@ struct LoginFormView: View {
         
     @ObservedObject var viewModel: LoginFormViewModel
     
+    @State var firstSecureFieldCharsAreVisible = false
+    @State var secondSecureFieldCharsAreVisible = false
+
     var body: some View {
         VStack {
             VStack {
@@ -28,9 +31,15 @@ struct LoginFormView: View {
                         .frame(width: 15, height: 18)
                         .foregroundColor(.black)
                     
-                    SecureField("Enter password".localized, text: $viewModel.passwordText)
+                    if firstSecureFieldCharsAreVisible {
+                        TextField("Enter password".localized, text: $viewModel.passwordText)
+                    } else {
+                        SecureField("Enter password".localized, text: $viewModel.passwordText)
+                    }
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        firstSecureFieldCharsAreVisible.toggle()
+                    }) {
                         Image(systemName: "eye").foregroundColor(.black)
                     }
                 }.padding(.vertical, 20)
@@ -44,9 +53,16 @@ struct LoginFormView: View {
                             .frame(width: 15, height: 18)
                             .foregroundColor(.black)
                         
-                        SecureField("Repeat password".localized, text: $viewModel.passwordRepeatedText)
+                        if secondSecureFieldCharsAreVisible {
+                            TextField("Repeat password".localized, text: $viewModel.passwordRepeatedText)
+                        } else {
+                            SecureField("Repeat password".localized, text: $viewModel.passwordRepeatedText)
+                        }
                         
-                        Button(action: {}) {
+                        
+                        Button(action: {
+                            secondSecureFieldCharsAreVisible.toggle()
+                        }) {
                             Image(systemName: "eye").foregroundColor(.black)
                         }
                     }.padding(.vertical, 20)
@@ -78,5 +94,12 @@ struct LoginFormView: View {
             .padding(.bottom, -40)
             .shadow(radius: 15)
         }
+    }
+}
+
+struct LoginFormView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginFormView(viewModel: LoginFormViewModel(mode: .signIn))
+        LoginFormView(viewModel: LoginFormViewModel(mode: .signUp))
     }
 }
