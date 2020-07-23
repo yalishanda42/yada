@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    @ObservedObject var viewModel: AuthenticationViewModel
+    @StateObject var viewModel: AuthenticationViewModel
         
     var body: some View {
         ZStack {

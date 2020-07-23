@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LoginFormView: View {
         
-    @ObservedObject var viewModel: LoginFormViewModel
+    @StateObject var viewModel: LoginFormViewModel
     
     @State var firstSecureFieldCharsAreVisible = false
     @State var secondSecureFieldCharsAreVisible = false

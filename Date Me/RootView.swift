@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RootView: View {
     
-    @ObservedObject var viewModel: RootViewModel
+    @StateObject var viewModel: RootViewModel
     
     private var currentView: some View {
         viewModel.authenticationIsPresented
