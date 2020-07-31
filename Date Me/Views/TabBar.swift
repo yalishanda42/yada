@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct TabBar: View {
-    
-    @StateObject var viewModel: TabBarViewModel
-    
+        
     var body: some View {
         TabView {
             MessagesView().tabItem {
@@ -32,6 +30,6 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar(viewModel: TabBarViewModel())
+        TabBar()
     }
 }

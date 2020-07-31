@@ -10,8 +10,8 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    @StateObject var viewModel: AuthenticationViewModel
-        
+    @State var mode: Mode = .signIn
+            
     var body: some View {
         ZStack {
             LinearGradient(
@@ -35,20 +35,20 @@ struct AuthenticationView: View {
                     HStack {
                         SegmentButton(
                             associatedMode: .signIn,
-                            currentIndex: $viewModel.mode.buttonIndex
+                            currentIndex: $mode.buttonIndex
                         )
                         
                         SegmentButton(
                             associatedMode: .signUp,
-                            currentIndex: $viewModel.mode.buttonIndex
+                            currentIndex: $mode.buttonIndex
                         )
                     }.background(Color.black.opacity(0.1))
                     .clipShape(Capsule())
                     .padding(.top, 25)
                     
-                    LoginFormView(viewModel: viewModel.loginFormViewModel)
+                    LoginFormView(mode: mode)
                     
-                    if viewModel.mode.buttonIndex == 0 {
+                    if mode.buttonIndex == 0 {
                         Button(action: {
                         }) {
                             Text("Forgot password?".localized).foregroundColor(.white)
@@ -94,7 +94,7 @@ struct AuthenticationView: View {
 
 struct SegmentButton: View {
     
-    let associatedMode: AuthenticationViewModel.Mode
+    let associatedMode: AuthenticationView.Mode
     @Binding var currentIndex: Int
     
     var index: Int {
@@ -119,6 +119,39 @@ struct SegmentButton: View {
 
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView(viewModel: AuthenticationViewModel())
+        AuthenticationView()
+    }
+}
+
+extension AuthenticationView {
+    enum Mode: Int, CaseIterable {
+        case signIn = 0
+        case signUp = 1
+        
+        var buttonIndex: Int {
+            get {
+                rawValue
+            } set {
+                self = Mode(rawValue: newValue)!
+            }
+        }
+        
+        var buttonText: String {
+            switch self {
+            case .signIn:
+                return "Login".localized
+            case .signUp:
+                return "Sign up".localized
+            }
+        }
+        
+        var segmentButtonTitle: String {
+            switch self {
+            case .signIn:
+                return "Existing".localized
+            case .signUp:
+                return "New".localized
+            }
+        }
     }
 }

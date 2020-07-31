@@ -9,9 +9,15 @@
 import SwiftUI
 
 struct LoginFormView: View {
-        
-    @StateObject var viewModel: LoginFormViewModel
     
+    @EnvironmentObject var store: AppStore
+    
+    let mode: AuthenticationView.Mode
+    
+    @State var email = ""
+    @State var password = ""
+    @State var passwordRepeated = ""
+            
     @State var firstSecureFieldCharsAreVisible = false
     @State var secondSecureFieldCharsAreVisible = false
 
@@ -20,7 +26,7 @@ struct LoginFormView: View {
             VStack {
                 HStack(spacing: 15) {
                     Image(systemName: "envelope").foregroundColor(.black)
-                    TextField("Enter e-mail address".localized, text: $viewModel.emailText)
+                    TextField("Enter e-mail address".localized, text: $email)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -32,9 +38,9 @@ struct LoginFormView: View {
                         .foregroundColor(.black)
                     
                     if firstSecureFieldCharsAreVisible {
-                        TextField("Enter password".localized, text: $viewModel.passwordText)
+                        TextField("Enter password".localized, text: $password)
                     } else {
-                        SecureField("Enter password".localized, text: $viewModel.passwordText)
+                        SecureField("Enter password".localized, text: $passwordRepeated)
                     }
                     
                     Button(action: {
@@ -44,7 +50,7 @@ struct LoginFormView: View {
                     }
                 }.padding(.vertical, 20)
                 
-                if viewModel.mode == .signUp {
+                if mode == .signUp {
                     Divider()
                     
                     HStack(spacing: 15) {
@@ -54,9 +60,9 @@ struct LoginFormView: View {
                             .foregroundColor(.black)
                         
                         if secondSecureFieldCharsAreVisible {
-                            TextField("Repeat password".localized, text: $viewModel.passwordRepeatedText)
+                            TextField("Repeat password".localized, text: $passwordRepeated)
                         } else {
-                            SecureField("Repeat password".localized, text: $viewModel.passwordRepeatedText)
+                            SecureField("Repeat password".localized, text: $passwordRepeated)
                         }
                         
                         
@@ -74,9 +80,14 @@ struct LoginFormView: View {
             .cornerRadius(10)
             
             Button(action: {
-                self.viewModel.buttonTap.send()
+                switch mode {
+                case .signUp:
+                    store.send(.signUp(email: email, password: password, passwordRepeated: passwordRepeated))
+                case .signIn:
+                    store.send(.logIn(email: email, password: password))
+                }
             }) {
-                Text(viewModel.mode.buttonText.uppercased())
+                Text(mode.buttonText.uppercased())
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)
@@ -99,7 +110,7 @@ struct LoginFormView: View {
 
 struct LoginFormView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginFormView(viewModel: LoginFormViewModel(mode: .signIn))
-        LoginFormView(viewModel: LoginFormViewModel(mode: .signUp))
+        LoginFormView(mode: .signIn)
+        LoginFormView(mode: .signUp)
     }
 }
