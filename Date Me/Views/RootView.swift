@@ -14,16 +14,16 @@ struct RootView: View {
     
     private var currentView: some View {
         store.state.authScreenIsPresented
-            ? AnyView(AuthenticationView())
-            : AnyView(TabBar())
+            ? AuthenticationView().eraseToAnyView()
+            : TabBar().eraseToAnyView()
     }
     
     var body: some View {
         currentView.alert(isPresented: .constant(store.state.alertIsPresented)) {
             Alert(
-                title: Text("Error".localized),
+                title: Text("Error"),
                 message: Text(store.state.alertTextMessage),
-                dismissButton: .default(Text("OK".localized),
+                dismissButton: .default(Text("OK"),
                     action: {
                         self.store.send(.dismissAlert)
                     }

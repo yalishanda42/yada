@@ -14,17 +14,17 @@ struct TabBar: View {
         TabView {
             MessagesView().tabItem {
                 Image(systemName: "message")
-                Text("Messages".localized)
+                Text("Messages")
             }
             MatchView().tabItem {
                 Image(systemName: "magnifyingglass")
-                Text("Match".localized)
+                Text("Match")
             }
             AccountView().tabItem {
                 Image(systemName: "person")
-                Text("Me".localized)
+                Text("Me")
             }
-        }.accentColor(.accentPeachy)
+        }.accentColor(.fromAsset(.accentPeachy))
     }
 }
 

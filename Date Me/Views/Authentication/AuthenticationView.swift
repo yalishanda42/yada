@@ -16,9 +16,9 @@ struct AuthenticationView: View {
         ZStack {
             LinearGradient(
                 gradient: .init(colors: [
-                    .accentOrange,
-                    .accentPeachy,
-                    .accentRed
+                    .fromAsset(.accentOrange),
+                    .fromAsset(.accentPeachy),
+                    .fromAsset(.accentRed),
                 ]),
                 startPoint: .top,
                 endPoint: .bottom
@@ -26,7 +26,7 @@ struct AuthenticationView: View {
             
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
-                    Image.hearts
+                    Image.fromAsset(.hearts)
                         .resizable()
                         .frame(width: 169, height: 169)
                         .padding(.top, 16)
@@ -51,13 +51,14 @@ struct AuthenticationView: View {
                     if mode.buttonIndex == 0 {
                         Button(action: {
                         }) {
-                            Text("Forgot password?".localized).foregroundColor(.white)
+                            Text("Forgot password?")
+                                .foregroundColor(.white)
                         }.padding(.top, 20)
                     }
                     
                     HStack(spacing: 15) {
                         Color.white.opacity(0.7).frame(width: 35, height: 1)
-                        Text("Or".localized)
+                        Text("Or")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                         Color.white.opacity(0.7).frame(width: 35, height: 1)
@@ -66,7 +67,7 @@ struct AuthenticationView: View {
                     HStack {
                         Button(action: {
                         }) {
-                            Image.facebook
+                            Image.fromAsset(.facebook)
                                 .renderingMode(.original)
                                 .resizable()
                                 .frame(width: 45, height: 45)
@@ -76,7 +77,7 @@ struct AuthenticationView: View {
                         
                         Button(action: {
                         }) {
-                            Image.apple
+                            Image.fromAsset(.apple)
                                 .renderingMode(.original)
                                 .resizable()
                                 .frame(width: 45, height: 45)
@@ -139,18 +140,18 @@ extension AuthenticationView {
         var buttonText: String {
             switch self {
             case .signIn:
-                return "Login".localized
+                return "Login"
             case .signUp:
-                return "Sign up".localized
+                return "Sign up"
             }
         }
         
         var segmentButtonTitle: String {
             switch self {
             case .signIn:
-                return "Existing".localized
+                return "Existing"
             case .signUp:
-                return "New".localized
+                return "New"
             }
         }
     }

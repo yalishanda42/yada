@@ -26,7 +26,7 @@ struct LoginFormView: View {
             VStack {
                 HStack(spacing: 15) {
                     Image(systemName: "envelope").foregroundColor(.black)
-                    TextField("Enter e-mail address".localized, text: $email)
+                    TextField("Enter e-mail address", text: $email)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -38,9 +38,9 @@ struct LoginFormView: View {
                         .foregroundColor(.black)
                     
                     if firstSecureFieldCharsAreVisible {
-                        TextField("Enter password".localized, text: $password)
+                        TextField("Enter password", text: $password)
                     } else {
-                        SecureField("Enter password".localized, text: $passwordRepeated)
+                        SecureField("Enter password", text: $passwordRepeated)
                     }
                     
                     Button(action: {
@@ -60,9 +60,9 @@ struct LoginFormView: View {
                             .foregroundColor(.black)
                         
                         if secondSecureFieldCharsAreVisible {
-                            TextField("Repeat password".localized, text: $passwordRepeated)
+                            TextField("Repeat password", text: $passwordRepeated)
                         } else {
-                            SecureField("Repeat password".localized, text: $passwordRepeated)
+                            SecureField("Repeat password", text: $passwordRepeated)
                         }
                         
                         
@@ -94,9 +94,9 @@ struct LoginFormView: View {
                     .frame(width: UIScreen.main.bounds.width - 100)
             }.background(LinearGradient(
                 gradient: .init(colors: [
-                    .accentRed,
-                    .accentPeachy,
-                    .accentOrange
+                    .fromAsset(.accentRed),
+                    .fromAsset(.accentPeachy),
+                    .fromAsset(.accentOrange)
                 ]),
                 startPoint: .leading,
                 endPoint: .trailing
