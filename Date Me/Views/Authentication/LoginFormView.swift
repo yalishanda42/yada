@@ -40,7 +40,7 @@ struct LoginFormView: View {
                     if firstSecureFieldCharsAreVisible {
                         TextField("Enter password", text: $password)
                     } else {
-                        SecureField("Enter password", text: $passwordRepeated)
+                        SecureField("Enter password", text: $password)
                     }
                     
                     Button(action: {
