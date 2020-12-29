@@ -35,6 +35,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView().environmentObject(DateMeApp.previewStore)
+        RootView().environmentObject(DateMeApp.previewStore())
     }
 }

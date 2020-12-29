@@ -18,6 +18,13 @@ struct DateMeApp: App {
         environment: AppServiceDependencies()
     )
     
+    static func previewStore(initialState: AppState = .init()) -> AppStore {
+        .init(initialState: initialState,
+              reducer: AppReducer.reduce,
+              environment: PreviewServiceDependencies()
+        )
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView().environmentObject(store)
@@ -26,12 +33,5 @@ struct DateMeApp: App {
     
     init() {
         FirebaseApp.configure()
-    }
-    
-    static var previewStore: AppStore {
-        .init(initialState: .init(),
-              reducer: AppReducer.reduce,
-              environment: PreviewServiceDependencies()
-        )
     }
 }
