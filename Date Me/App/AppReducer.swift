@@ -9,8 +9,6 @@
 import Foundation
 import Combine
 
-typealias AppStore = Store<AppState, AppAction, ServiceDepdendencies>
-
 enum AppReducer {
     static func reduce(
         state: inout AppState,

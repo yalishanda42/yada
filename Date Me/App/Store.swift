@@ -9,6 +9,8 @@
 import Foundation
 import Combine
 
+typealias AppStore = Store<AppState, AppAction, ServiceDepdendencies>
+
 final class Store<State, Action, Environment>: ObservableObject {
     typealias Reducer<State, Action, Environment> =
         (inout State, Action, Environment) -> AnyPublisher<Action, Never>
