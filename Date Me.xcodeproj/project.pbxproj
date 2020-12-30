@@ -35,6 +35,7 @@
 		74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */; };
 		74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */; };
 		74D53AE824C8624500D4C29A /* PreviewServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */; };
+		74FFB224259D1A3C0013B8A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74FFB226259D1A3C0013B8A4 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+eraseToAnyView.swift"; sourceTree = "<group>"; };
 		74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationService.swift; sourceTree = "<group>"; };
 		74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewServiceDependencies.swift; sourceTree = "<group>"; };
+		74FFB225259D1A3C0013B8A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		7411BF3324C4EF3D00F90E81 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				74FFB226259D1A3C0013B8A4 /* Localizable.strings */,
 				7411BF1424C4C51F00F90E81 /* LaunchScreen.storyboard */,
 				7411BF2B24C4C8D800F90E81 /* Colors.xcassets */,
 				7411BF0F24C4C51F00F90E81 /* Assets.xcassets */,
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7411BF1624C4C51F00F90E81 /* LaunchScreen.storyboard in Resources */,
+				74FFB224259D1A3C0013B8A4 /* Localizable.strings in Resources */,
 				7411BF2C24C4C8D800F90E81 /* Colors.xcassets in Resources */,
 				7411BF4B24C7787200F90E81 /* GoogleService-Info.plist in Resources */,
 				7411BF1324C4C51F00F90E81 /* Preview Assets.xcassets in Resources */,
@@ -345,6 +349,14 @@
 				7411BF1524C4C51F00F90E81 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		74FFB226259D1A3C0013B8A4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74FFB225259D1A3C0013B8A4 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

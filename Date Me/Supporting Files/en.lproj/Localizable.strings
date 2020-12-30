@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Date Me
+
+  Created by Alexander Ignatov on 30.12.20.
+  Copyright © 2020 Alexander Ignatov. All rights reserved.
+*/
+
+"auth.error.email_already_in_use" = "The email is already in use with another account";
+"auth.error.disabled_account" = "Your account has been disabled. Please contact support.";
+"auth.error.invalid_email" = "Please enter a valid email";
+"auth.error.network_error" = "Network error. Please try again.";
+"auth.error.weak_password" = "Your password is too weak";
+"auth.error.wrong_password" = "Your password is wrong";
+"auth.error.passwords_not_matching" = "Passwords should match!";
+"auth.error.unknown" = "Unknown error occurred";

@@ -23,19 +23,22 @@ enum AppReducer {
                 .logInWithEmail(email: email, password: password)
                 .map { _ in .hideAuthenticationScreen }
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
-                    return Just(.presentAlert(message: error.localizedErrorMessage)).eraseToAnyPublisher()
+                    return Just(.presentAlert(message: error.localizedErrorMessage))
+                        .eraseToAnyPublisher()
                 }.eraseToAnyPublisher()
             
         case .signUp(email: let email, password: let password, passwordRepeated: let password2):
             guard password == password2 else {
-                return Just(.presentAlert(message: "Passwords should match!".localized)).eraseToAnyPublisher()
+                return Just(.presentAlert(message: AuthenticationError.passwordsDoNotMatch.localizedErrorMessage))
+                    .eraseToAnyPublisher()
             }
             return environment
                 .authenticationService
                 .signUpWithEmail(email: email, password: password)
                 .map { _ in .hideAuthenticationScreen }
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
-                    return Just(.presentAlert(message: error.localizedErrorMessage)).eraseToAnyPublisher()
+                    return Just(.presentAlert(message: error.localizedErrorMessage))
+                        .eraseToAnyPublisher()
                 }.eraseToAnyPublisher()
             
         case .presentAlert(message: let message):

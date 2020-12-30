@@ -24,24 +24,28 @@ enum AuthenticationError: Error {
     case weakPassword
     case wrongPassword
     
+    case passwordsDoNotMatch
+    
     case unknown
     
     var localizedErrorMessage: String {
         switch self {
         case .emailAlreadyInUse:
-            return "The email is already in use with another account".localized
+            return "auth.error.email_already_in_use".localized
         case .userDisabled:
-            return "Your account has been disabled. Please contact support.".localized
+            return "auth.error.disabled_account".localized
         case .invalidEmail:
-            return "Please enter a valid email".localized
+            return "auth.error.invalid_email".localized
         case .networkError:
-            return "Network error. Please try again.".localized
+            return "auth.error.network_error".localized
         case .weakPassword:
-            return "Your password is too weak".localized
+            return "auth.error.weak_password".localized
         case .wrongPassword:
-            return "Your password is wrong".localized
+            return "auth.error.wrong_password".localized
+        case .passwordsDoNotMatch:
+            return "auth.error.passwords_not_matching".localized
         case .unknown:
-            return "Unknown error occurred".localized
+            return "auth.error.unknown".localized
         }
     }
 }
