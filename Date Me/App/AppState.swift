@@ -18,6 +18,8 @@ struct AppState {
     // MARK: - Tabs
     var selectedTab: Tab = .default
     
+    // MARK: - Settings
+    var settingsAreShown = false
 }
 
 extension AppState {

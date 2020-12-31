@@ -32,6 +32,8 @@
 		74824BA124C850B800008B49 /* AppServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824BA024C850B800008B49 /* AppServiceDependencies.swift */; };
 		7485402624C793470077A31D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485402524C793470077A31D /* RootView.swift */; };
 		748587DC259DFF920089BF2D /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 748587DB259DFF920089BF2D /* BottomBar-SwiftUI */; };
+		748587DF259E13B00089BF2D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748587DE259E13B00089BF2D /* SettingsView.swift */; };
+		748587E4259E13FD0089BF2D /* View+customBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748587E3259E13FD0089BF2D /* View+customBackButton.swift */; };
 		74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74B2AD20259B4F9500B71A21 /* FirebaseAuth */; };
 		74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */; };
 		74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */; };
@@ -68,6 +70,8 @@
 		74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAuthenticationService.swift; sourceTree = "<group>"; };
 		74824BA024C850B800008B49 /* AppServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceDependencies.swift; sourceTree = "<group>"; };
 		7485402524C793470077A31D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		748587DE259E13B00089BF2D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		748587E3259E13FD0089BF2D /* View+customBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+customBackButton.swift"; sourceTree = "<group>"; };
 		74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+eraseToAnyView.swift"; sourceTree = "<group>"; };
 		74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationService.swift; sourceTree = "<group>"; };
 		74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewServiceDependencies.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				7411BF3124C4E75600F90E81 /* Image+fromAsset.swift */,
 				7411BF2D24C4CA8600F90E81 /* Color+fromAsset.swift */,
 				74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */,
+				748587E3259E13FD0089BF2D /* View+customBackButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				7411BF3D24C62D2F00F90E81 /* MessagesView.swift */,
 				7411BF3F24C62D3E00F90E81 /* MatchView.swift */,
 				7411BF4124C62D4C00F90E81 /* AccountView.swift */,
+				748587DE259E13B00089BF2D /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74016C4F24CDD38500E1C96E /* AppAction.swift in Sources */,
+				748587DF259E13B00089BF2D /* SettingsView.swift in Sources */,
 				74824BA124C850B800008B49 /* AppServiceDependencies.swift in Sources */,
 				7411BF3C24C62AAF00F90E81 /* TabBar.swift in Sources */,
 				7485402624C793470077A31D /* RootView.swift in Sources */,
@@ -330,6 +337,7 @@
 				7411BF4024C62D3E00F90E81 /* MatchView.swift in Sources */,
 				7411BF2E24C4CA8600F90E81 /* Color+fromAsset.swift in Sources */,
 				74824B9924C8502000008B49 /* ServiceDependencies.swift in Sources */,
+				748587E4259E13FD0089BF2D /* View+customBackButton.swift in Sources */,
 				74824B9B24C8506600008B49 /* AuthenticationService.swift in Sources */,
 				74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */,
 				74D53AE824C8624500D4C29A /* PreviewServiceDependencies.swift in Sources */,

@@ -54,6 +54,12 @@ enum AppReducer {
             
         case .selectTab(let tab):
             state.selectedTab = tab
+            
+        case .tapSettings:
+            state.settingsAreShown = true
+            
+        case .popBackSettings:
+            state.settingsAreShown = false
         }
         
         return Empty().eraseToAnyPublisher()

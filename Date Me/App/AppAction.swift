@@ -15,4 +15,6 @@ enum AppAction {
     case dismissAlert
     case hideAuthenticationScreen
     case selectTab(AppState.Tab)
+    case tapSettings
+    case popBackSettings
 }
