@@ -118,11 +118,15 @@ struct SegmentButton: View {
     }
 }
 
+// MARK: - Previews
+
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationView()
     }
 }
+
+// MARK: - Helpers
 
 extension AuthenticationView {
     enum Mode: Int, CaseIterable {

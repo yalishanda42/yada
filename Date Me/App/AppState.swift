@@ -13,6 +13,21 @@ struct AppState {
     var alertTextMessage = ""
     
     // MARK: - Authentication
-    var authScreenIsPresented = true
+    var authScreenIsPresented = false
     
+    // MARK: - Tabs
+    var selectedTab: Tab = .default
+    
+}
+
+extension AppState {
+    enum Tab: Int, CaseIterable, Equatable {
+        case messages
+        case match
+        case account
+        
+        var index: Int { rawValue }
+        
+        static var `default`: Self { .messages }
+    }
 }

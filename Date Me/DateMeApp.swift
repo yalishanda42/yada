@@ -9,6 +9,8 @@
 import SwiftUI
 import Firebase
 
+// MARK: - App
+
 @main
 struct DateMeApp: App {
         
@@ -18,13 +20,6 @@ struct DateMeApp: App {
         environment: AppServiceDependencies()
     )
     
-    static func previewStore(initialState: AppState = .init()) -> AppStore {
-        .init(initialState: initialState,
-              reducer: AppReducer.reduce,
-              environment: PreviewServiceDependencies()
-        )
-    }
-    
     var body: some Scene {
         WindowGroup {
             RootView().environmentObject(store)
@@ -33,5 +28,16 @@ struct DateMeApp: App {
     
     init() {
         FirebaseApp.configure()
+    }
+}
+
+// MARK: - Previews
+
+extension DateMeApp {
+    static func previewStore(initialState: AppState = .init()) -> AppStore {
+        .init(initialState: initialState,
+              reducer: AppReducer.reduce,
+              environment: PreviewServiceDependencies()
+        )
     }
 }

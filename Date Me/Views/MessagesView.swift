@@ -14,6 +14,8 @@ struct MessagesView: View {
     }
 }
 
+// MARK: - Previews
+
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
         MessagesView()

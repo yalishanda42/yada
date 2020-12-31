@@ -33,6 +33,8 @@ struct RootView: View {
     }
 }
 
+// MARK: - Previews
+
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         RootView().environmentObject(DateMeApp.previewStore())

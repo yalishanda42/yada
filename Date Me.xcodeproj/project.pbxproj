@@ -31,6 +31,7 @@
 		74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */; };
 		74824BA124C850B800008B49 /* AppServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824BA024C850B800008B49 /* AppServiceDependencies.swift */; };
 		7485402624C793470077A31D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485402524C793470077A31D /* RootView.swift */; };
+		748587DC259DFF920089BF2D /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 748587DB259DFF920089BF2D /* BottomBar-SwiftUI */; };
 		74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74B2AD20259B4F9500B71A21 /* FirebaseAuth */; };
 		74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */; };
 		74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */; };
@@ -79,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */,
+				748587DC259DFF920089BF2D /* BottomBar-SwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +255,7 @@
 			name = "Date Me";
 			packageProductDependencies = (
 				74B2AD20259B4F9500B71A21 /* FirebaseAuth */,
+				748587DB259DFF920089BF2D /* BottomBar-SwiftUI */,
 			);
 			productName = "Date Me";
 			productReference = 7411BF0624C4C51D00F90E81 /* Date Me.app */;
@@ -284,6 +287,7 @@
 			mainGroup = 7411BEFD24C4C51D00F90E81;
 			packageReferences = (
 				74B2AD1F259B4F9500B71A21 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
 			);
 			productRefGroup = 7411BF0724C4C51D00F90E81 /* Products */;
 			projectDirPath = "";
@@ -542,6 +546,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		74B2AD1F259B4F9500B71A21 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -553,6 +565,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		748587DB259DFF920089BF2D /* BottomBar-SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
+			productName = "BottomBar-SwiftUI";
+		};
 		74B2AD20259B4F9500B71A21 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 74B2AD1F259B4F9500B71A21 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

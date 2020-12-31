@@ -108,6 +108,8 @@ struct LoginFormView: View {
     }
 }
 
+// MARK: - Previews
+
 struct LoginFormView_Previews: PreviewProvider {
     static var previews: some View {
         LoginFormView(mode: .signIn)

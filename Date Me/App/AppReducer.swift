@@ -51,6 +51,9 @@ enum AppReducer {
             
         case .hideAuthenticationScreen:
             state.authScreenIsPresented = false
+            
+        case .selectTab(let tab):
+            state.selectedTab = tab
         }
         
         return Empty().eraseToAnyPublisher()

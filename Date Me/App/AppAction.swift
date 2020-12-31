@@ -14,4 +14,5 @@ enum AppAction {
     case presentAlert(message: String)
     case dismissAlert
     case hideAuthenticationScreen
+    case selectTab(AppState.Tab)
 }

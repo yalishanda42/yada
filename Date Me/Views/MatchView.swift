@@ -14,6 +14,8 @@ struct MatchView: View {
     }
 }
 
+// MARK: - Previews
+
 struct MatchView_Previews: PreviewProvider {
     static var previews: some View {
         MatchView()
