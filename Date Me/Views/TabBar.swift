@@ -14,15 +14,15 @@ struct TabBar: View {
         TabView {
             MessagesView().tabItem {
                 Image(systemName: "message")
-                Text("Messages")
+                Text("tab.messages")
             }
             MatchView().tabItem {
                 Image(systemName: "magnifyingglass")
-                Text("Match")
+                Text("tab.match")
             }
             AccountView().tabItem {
                 Image(systemName: "person")
-                Text("Me")
+                Text("tab.account")
             }
         }.accentColor(.fromAsset(.accentPeachy))
     }

@@ -51,14 +51,14 @@ struct AuthenticationView: View {
                     if mode.buttonIndex == 0 {
                         Button(action: {
                         }) {
-                            Text("Forgot password?")
+                            Text("auth.forgot_password")
                                 .foregroundColor(.white)
                         }.padding(.top, 20)
                     }
                     
                     HStack(spacing: 15) {
                         Color.white.opacity(0.7).frame(width: 35, height: 1)
-                        Text("Or")
+                        Text("auth.or")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                         Color.white.opacity(0.7).frame(width: 35, height: 1)
@@ -108,7 +108,7 @@ struct SegmentButton: View {
                 self.currentIndex = self.index
             }
         }) {
-            Text(associatedMode.segmentButtonTitle)
+            Text(verbatim: associatedMode.localizedSegmentButtonTitle)
                 .foregroundColor(self.currentIndex == index ? .black : .white)
                 .fontWeight(.bold)
                 .padding(.vertical, 10)
@@ -137,21 +137,21 @@ extension AuthenticationView {
             }
         }
         
-        var buttonText: String {
+        var localizedButtonText: String {
             switch self {
             case .signIn:
-                return "Login"
+                return "auth.login".localized
             case .signUp:
-                return "Sign up"
+                return "auth.signup".localized
             }
         }
         
-        var segmentButtonTitle: String {
+        var localizedSegmentButtonTitle: String {
             switch self {
             case .signIn:
-                return "Existing"
+                return "auth.existing".localized
             case .signUp:
-                return "New"
+                return "auth.new".localized
             }
         }
     }

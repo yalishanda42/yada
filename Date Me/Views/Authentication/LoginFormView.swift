@@ -26,7 +26,7 @@ struct LoginFormView: View {
             VStack {
                 HStack(spacing: 15) {
                     Image(systemName: "envelope").foregroundColor(.black)
-                    TextField("Enter e-mail address", text: $email)
+                    TextField("auth.enter.email", text: $email)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -38,9 +38,9 @@ struct LoginFormView: View {
                         .foregroundColor(.black)
                     
                     if firstSecureFieldCharsAreVisible {
-                        TextField("Enter password", text: $password)
+                        TextField("auth.enter.password", text: $password)
                     } else {
-                        SecureField("Enter password", text: $password)
+                        SecureField("auth.enter.password", text: $password)
                     }
                     
                     Button(action: {
@@ -60,9 +60,9 @@ struct LoginFormView: View {
                             .foregroundColor(.black)
                         
                         if secondSecureFieldCharsAreVisible {
-                            TextField("Repeat password", text: $passwordRepeated)
+                            TextField("auth.enter.password2", text: $passwordRepeated)
                         } else {
-                            SecureField("Repeat password", text: $passwordRepeated)
+                            SecureField("auth.enter.password2", text: $passwordRepeated)
                         }
                         
                         
@@ -87,7 +87,7 @@ struct LoginFormView: View {
                     store.send(.logIn(email: email, password: password))
                 }
             }) {
-                Text(mode.buttonText.uppercased())
+                Text(verbatim: mode.localizedButtonText.uppercased())
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)

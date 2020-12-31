@@ -21,9 +21,9 @@ struct RootView: View {
     var body: some View {
         currentView.alert(isPresented: .constant(store.state.alertIsPresented)) {
             Alert(
-                title: Text("Error"),
+                title: Text("alert.error"),
                 message: Text(store.state.alertTextMessage),
-                dismissButton: .default(Text("OK"),
+                dismissButton: .default(Text("alert.ok"),
                     action: {
                         self.store.send(.dismissAlert)
                     }

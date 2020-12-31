@@ -6,6 +6,16 @@
   Copyright © 2020 Alexander Ignatov. All rights reserved.
 */
 
+"auth.enter.email" = "Enter e-mail";
+"auth.enter.password" = "Enter password";
+"auth.enter.password2" = "Repeat password";
+"auth.forgot_password" = "Forgot password?";
+"auth.or" = "or";
+"auth.login" = "Login";
+"auth.signup" = "Sign Up";
+"auth.existing" = "Existing";
+"auth.new" = "New";
+
 "auth.error.email_already_in_use" = "The email is already in use with another account";
 "auth.error.disabled_account" = "Your account has been disabled. Please contact support.";
 "auth.error.invalid_email" = "Please enter a valid email";
@@ -14,3 +24,10 @@
 "auth.error.wrong_password" = "Your password is wrong";
 "auth.error.passwords_not_matching" = "Passwords should match!";
 "auth.error.unknown" = "Unknown error occurred";
+
+"alert.error" = "Error";
+"alert.ok" = "OK";
+
+"tab.messages" = "Messages";
+"tab.match" = "Match";
+"tab.account" = "Me";
