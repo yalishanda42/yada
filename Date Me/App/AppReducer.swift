@@ -49,6 +49,9 @@ enum AppReducer {
             state.alertIsPresented = false
             state.alertTextMessage = ""
             
+        case .presentAuthenticationScreen:
+            state.authScreenIsPresented = true
+            
         case .hideAuthenticationScreen:
             state.authScreenIsPresented = false
             

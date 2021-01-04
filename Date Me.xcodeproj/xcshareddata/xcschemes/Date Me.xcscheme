@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Date Me.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7460E63425A38A3100DD39DB"
+               BuildableName = "DateMeTests.xctest"
+               BlueprintName = "DateMeTests"
+               ReferencedContainer = "container:Date Me.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

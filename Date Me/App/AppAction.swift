@@ -11,10 +11,15 @@ import Foundation
 enum AppAction {
     case logIn(email: String, password: String)
     case signUp(email: String, password: String, passwordRepeated: String)
+    
     case presentAlert(message: String)
     case dismissAlert
+    
+    case presentAuthenticationScreen
     case hideAuthenticationScreen
+    
     case selectTab(AppState.Tab)
+    
     case tapSettings
     case popBackSettings
 }
