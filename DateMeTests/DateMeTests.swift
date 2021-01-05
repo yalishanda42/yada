@@ -93,6 +93,7 @@ class DateMeTests: XCTestCase {
         let _ = try wait(for: recorder.elements, timeout: 0.5)
         
         XCTAssert(!store.state.authScreenIsPresented)
+        XCTAssert(!store.state.alertIsPresented)
     }
     
     func testReduceLoginError() throws {
@@ -112,6 +113,81 @@ class DateMeTests: XCTestCase {
         )
         
         let publisher = store.obtainReducerPublisher(.logIn(email: email, password: password))
+        let recorder = publisher.record()
+        store.applyReducerPublisher(publisher)
+        let _ = try wait(for: recorder.elements, timeout: 0.5)
+        
+        XCTAssert(store.state.authScreenIsPresented)
+        XCTAssert(store.state.alertIsPresented)
+        XCTAssertEqual(store.state.alertTextMessage, error.localizedErrorMessage)
+    }
+    
+    func testReduceSignUpSuccess() throws {
+        let email = "correct@email.com"
+        let password = "correct_password"
+        let password2 = "correct_password"
+        let store = AppStore.mockStore(
+            initialState: .init(
+                authScreenIsPresented: true
+            ),
+            mockServices: .init(
+                authenticationService: MockAuthenticationService()
+                    .when(\.mockedSignUpWithEmail, returns: Just(())
+                            .mapError{_ in .unknown}
+                            .eraseToAnyPublisher()
+                    )
+            )
+        )
+        
+        let publisher = store.obtainReducerPublisher(.signUp(email: email, password: password, passwordRepeated: password2))
+        let recorder = publisher.record()
+        store.applyReducerPublisher(publisher)
+        let _ = try wait(for: recorder.elements, timeout: 0.5)
+        
+        XCTAssert(!store.state.authScreenIsPresented)
+        XCTAssert(!store.state.alertIsPresented)
+    }
+    
+    func testReduceSignUpErrorPasswordsEqual() throws {
+        let email = "correct@email.com"
+        let password = "password"
+        let password2 = "incorrect_password"
+        let error = AuthenticationError.passwordsDoNotMatch
+        let store = AppStore.mockStore(
+            initialState: .init(
+                authScreenIsPresented: true
+            ),
+            mockServices: .init()
+        )
+        
+        let publisher = store.obtainReducerPublisher(.signUp(email: email, password: password, passwordRepeated: password2))
+        let recorder = publisher.record()
+        store.applyReducerPublisher(publisher)
+        let _ = try wait(for: recorder.elements, timeout: 0.5)
+        
+        XCTAssert(store.state.authScreenIsPresented)
+        XCTAssert(store.state.alertIsPresented)
+        XCTAssertEqual(store.state.alertTextMessage, error.localizedErrorMessage)
+    }
+    
+    func testReduceSignUpErrorEmailInUse() throws {
+        let email = "incorrect@email.com"
+        let password = "correct_password"
+        let password2 = "correct_password"
+        let error = AuthenticationError.emailAlreadyInUse
+        let store = AppStore.mockStore(
+            initialState: .init(
+                authScreenIsPresented: true
+            ),
+            mockServices: .init(
+                authenticationService: MockAuthenticationService()
+                    .when(\.mockedSignUpWithEmail, returns: Fail(error: error)
+                            .eraseToAnyPublisher()
+                    )
+            )
+        )
+        
+        let publisher = store.obtainReducerPublisher(.signUp(email: email, password: password, passwordRepeated: password2))
         let recorder = publisher.record()
         store.applyReducerPublisher(publisher)
         let _ = try wait(for: recorder.elements, timeout: 0.5)
