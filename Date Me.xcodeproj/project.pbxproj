@@ -118,7 +118,7 @@
 				74016C4C24CDD1F600E1C96E /* AppState.swift */,
 				74016C4E24CDD38500E1C96E /* AppAction.swift */,
 				74824B9824C8502000008B49 /* ServiceDependencies.swift */,
-				74824B9724C84FD900008B49 /* Services */,
+				74824B9E24C8507F00008B49 /* Services Protocols */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -146,6 +146,7 @@
 			children = (
 				7443CC3924CA2FC7008830C7 /* DateMeApp.swift */,
 				74016C4B24CDD1B400E1C96E /* App */,
+				74824B9724C84FD900008B49 /* Services */,
 				74CEE85424D4C89500898215 /* Views */,
 				7411BF3A24C4F05400F90E81 /* Extensions */,
 				7411BF3324C4EF3D00F90E81 /* Supporting Files */,
@@ -210,18 +211,17 @@
 			children = (
 				74824BA024C850B800008B49 /* AppServiceDependencies.swift */,
 				74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */,
-				74824B9E24C8507F00008B49 /* Protocols */,
 				74824B9F24C8508C00008B49 /* Implementations */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		74824B9E24C8507F00008B49 /* Protocols */ = {
+		74824B9E24C8507F00008B49 /* Services Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				74824B9A24C8506600008B49 /* AuthenticationService.swift */,
 			);
-			path = Protocols;
+			path = "Services Protocols";
 			sourceTree = "<group>";
 		};
 		74824B9F24C8508C00008B49 /* Implementations */ = {
