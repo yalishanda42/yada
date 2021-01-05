@@ -35,6 +35,9 @@
 		748587DC259DFF920089BF2D /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 748587DB259DFF920089BF2D /* BottomBar-SwiftUI */; };
 		748587DF259E13B00089BF2D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748587DE259E13B00089BF2D /* SettingsView.swift */; };
 		748587E4259E13FD0089BF2D /* View+customBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748587E3259E13FD0089BF2D /* View+customBackButton.swift */; };
+		748E416725A48D830021AA29 /* AppStore+mockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E416625A48D830021AA29 /* AppStore+mockStore.swift */; };
+		748E416D25A48DC60021AA29 /* MockServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */; };
+		748E417425A48F2E0021AA29 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */; };
 		74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74B2AD20259B4F9500B71A21 /* FirebaseAuth */; };
 		74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */; };
 		74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */; };
@@ -84,6 +87,9 @@
 		7485402524C793470077A31D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		748587DE259E13B00089BF2D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		748587E3259E13FD0089BF2D /* View+customBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+customBackButton.swift"; sourceTree = "<group>"; };
+		748E416625A48D830021AA29 /* AppStore+mockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+mockStore.swift"; sourceTree = "<group>"; };
+		748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceDependencies.swift; sourceTree = "<group>"; };
+		748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+eraseToAnyView.swift"; sourceTree = "<group>"; };
 		74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationService.swift; sourceTree = "<group>"; };
 		74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewServiceDependencies.swift; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				7460E63725A38A3100DD39DB /* DateMeTests.swift */,
+				748E416525A48D0F0021AA29 /* Mock */,
 				7460E63925A38A3100DD39DB /* Info.plist */,
 			);
 			path = DateMeTests;
@@ -231,6 +238,24 @@
 				74D53AEA24C8625D00D4C29A /* Preview */,
 			);
 			path = Implementations;
+			sourceTree = "<group>";
+		};
+		748E416525A48D0F0021AA29 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				748E416625A48D830021AA29 /* AppStore+mockStore.swift */,
+				748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */,
+				748E417225A48F1E0021AA29 /* Services */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		748E417225A48F1E0021AA29 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		74CEE85424D4C89500898215 /* Views */ = {
@@ -406,7 +431,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				748E416D25A48DC60021AA29 /* MockServiceDependencies.swift in Sources */,
+				748E417425A48F2E0021AA29 /* MockAuthenticationService.swift in Sources */,
 				7460E63825A38A3100DD39DB /* DateMeTests.swift in Sources */,
+				748E416725A48D830021AA29 /* AppStore+mockStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

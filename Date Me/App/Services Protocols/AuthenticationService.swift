@@ -8,9 +8,7 @@
 
 import Combine
 
-protocol AuthenticationService {
-    var isAuthenticated: AnyPublisher<Bool, Never> { get }
-    
+protocol AuthenticationService {    
     func signUpWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError>
     
     func logInWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError>

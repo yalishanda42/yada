@@ -13,7 +13,7 @@ enum AppReducer {
     static func reduce(
         state: inout AppState,
         action: AppAction,
-        environment: ServiceDepdendencies
+        environment: ServiceDependencies
     ) -> AnyPublisher<AppAction, Never> {
         switch action {
         

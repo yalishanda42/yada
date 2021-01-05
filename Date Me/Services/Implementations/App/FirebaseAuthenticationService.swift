@@ -10,13 +10,6 @@ import Firebase
 import Combine
 
 class FirebaseAuthenticationService: AuthenticationService {
-    let isAuthenticated: AnyPublisher<Bool, Never>
-    private let userSubject = CurrentValueSubject<User?, Never>(nil)
-    
-    init() {
-        self.isAuthenticated = userSubject.map { $0 != nil }.eraseToAnyPublisher()
-    }
-    
     func signUpWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError> {
         return Future { event in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -31,18 +24,15 @@ class FirebaseAuthenticationService: AuthenticationService {
     
     func logInWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError> {
         return Future { event in
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-                guard let result = result else {
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                guard result != nil else {
                     event(.failure(.init(error)))
                     return
                 }
-                
-                self?.userSubject.send(result.user)
                 event(.success(()))
             }
         }.eraseToAnyPublisher()
     }
-    
 }
 
 extension Error {

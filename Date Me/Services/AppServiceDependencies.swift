@@ -6,6 +6,6 @@
 //  Copyright © 2020 Alexander Ignatov. All rights reserved.
 //
 
-class AppServiceDependencies: ServiceDepdendencies {
+class AppServiceDependencies: ServiceDependencies {
     lazy var authenticationService: AuthenticationService = FirebaseAuthenticationService()
 }

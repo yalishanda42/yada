@@ -6,6 +6,6 @@
 //  Copyright © 2020 Alexander Ignatov. All rights reserved.
 //
 
-protocol ServiceDepdendencies {
+protocol ServiceDependencies {
     var authenticationService: AuthenticationService { get }
 }

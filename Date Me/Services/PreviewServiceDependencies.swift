@@ -6,6 +6,6 @@
 //  Copyright © 2020 Alexander Ignatov. All rights reserved.
 //
 
-class PreviewServiceDependencies: ServiceDepdendencies {
+class PreviewServiceDependencies: ServiceDependencies {
     lazy var authenticationService: AuthenticationService = PreviewAuthenticationService()
 }
