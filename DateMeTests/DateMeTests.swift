@@ -8,18 +8,14 @@
 
 import XCTest
 @testable import Date_Me
+import Combine
+import CombineExpectations
 
 class DateMeTests: XCTestCase {
-    
-    // MARK: - Properties
-    
-    private var store: AppStore!
     
     // MARK: - Set up
 
     override func setUpWithError() throws {
-        store = DateMeApp.previewStore()
-        // TODO Use a different environment for a test store?
     }
     
     // MARK: - Tear down
@@ -30,16 +26,19 @@ class DateMeTests: XCTestCase {
     // MARK: - Unit Tests: Reducer
     
     func testReducePresentAuthenticationScreen() throws {
+        let store = AppStore.mockStore(initialState: .init(authScreenIsPresented: false))
         store.send(.presentAuthenticationScreen)
         XCTAssert(store.state.authScreenIsPresented)
     }
 
     func testReduceHideAuthenticationScreen() throws {
+        let store = AppStore.mockStore(initialState: .init(authScreenIsPresented: true))
         store.send(.hideAuthenticationScreen)
         XCTAssert(!store.state.authScreenIsPresented)
     }
     
     func testReducePresentAlert() throws {
+        let store = AppStore.mockStore(initialState: .init(alertIsPresented: false))
         let message = "Test message 123"
         store.send(.presentAlert(message: message))
         XCTAssert(store.state.alertIsPresented)
@@ -47,24 +46,78 @@ class DateMeTests: XCTestCase {
     }
     
     func testReduceDismissAlert() throws {
+        let store = AppStore.mockStore(initialState: .init(alertIsPresented: true))
         store.send(.dismissAlert)
         XCTAssert(!store.state.alertIsPresented)
     }
     
     func testReduceTapSettings() throws {
+        let store = AppStore.mockStore(initialState: .init(settingsAreShown: false))
         store.send(.tapSettings)
         XCTAssert(store.state.settingsAreShown)
     }
     
     func testReducePopBackSettings() throws {
+        let store = AppStore.mockStore(initialState: .init(settingsAreShown: true))
         store.send(.popBackSettings)
         XCTAssert(!store.state.settingsAreShown)
     }
     
     func testReduceSelectTab() throws {
-        for tab in AppState.Tab.allCases {
+        let store = AppStore.mockStore()
+        for tab in AppState.Tab.allCases + [.default] {
             store.send(.selectTab(tab))
             XCTAssertEqual(store.state.selectedTab, tab, "Could not select \(tab)")
         }
+    }
+    
+    func testReduceLoginSuccess() throws {
+        let email = "correct@email.com"
+        let password = "correct_password"
+        let store = AppStore.mockStore(
+            initialState: .init(
+                authScreenIsPresented: true
+            ),
+            mockServices: .init(
+                authenticationService: MockAuthenticationService()
+                    .when(\.mockedLoginWithEmail, returns: Just(())
+                            .mapError{_ in .unknown}
+                            .eraseToAnyPublisher()
+                    )
+            )
+        )
+        
+        let publisher = store.obtainReducerPublisher(.logIn(email: email, password: password))
+        let recorder = publisher.record()
+        store.applyReducerPublisher(publisher)
+        let _ = try wait(for: recorder.elements, timeout: 0.5)
+        
+        XCTAssert(!store.state.authScreenIsPresented)
+    }
+    
+    func testReduceLoginError() throws {
+        let email = "incorrect@email.com"
+        let password = "password"
+        let error = AuthenticationError.invalidEmail
+        let store = AppStore.mockStore(
+            initialState: .init(
+                authScreenIsPresented: true
+            ),
+            mockServices: .init(
+                authenticationService: MockAuthenticationService()
+                    .when(\.mockedLoginWithEmail, returns: Fail(error: error)
+                            .eraseToAnyPublisher()
+                    )
+            )
+        )
+        
+        let publisher = store.obtainReducerPublisher(.logIn(email: email, password: password))
+        let recorder = publisher.record()
+        store.applyReducerPublisher(publisher)
+        let _ = try wait(for: recorder.elements, timeout: 0.5)
+        
+        XCTAssert(store.state.authScreenIsPresented)
+        XCTAssert(store.state.alertIsPresented)
+        XCTAssertEqual(store.state.alertTextMessage, error.localizedErrorMessage)
     }
 }

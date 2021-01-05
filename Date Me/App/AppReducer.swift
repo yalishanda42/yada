@@ -69,7 +69,7 @@ enum AppReducer {
     }
 }
 
-fileprivate extension AuthenticationError {
+extension AuthenticationError {
     var localizedErrorMessage: String {
         switch self {
         case .emailAlreadyInUse:

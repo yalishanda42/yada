@@ -10,10 +10,13 @@ import Foundation
 @testable import Date_Me
 
 extension AppStore {
-    static func mockStore(initialState: AppState = .init()) -> AppStore {
+    static func mockStore(
+        initialState: AppState = .init(),
+        mockServices: MockServiceDependencies = .init()
+    ) -> AppStore {
         .init(initialState: initialState,
               reducer: AppReducer.reduce,
-              environment: MockServiceDependencies()
+              environment: mockServices
         )
     }
 }

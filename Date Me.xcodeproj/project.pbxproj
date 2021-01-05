@@ -27,6 +27,8 @@
 		7411BF4B24C7787200F90E81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7411BF4A24C7787200F90E81 /* GoogleService-Info.plist */; };
 		7443CC3A24CA2FC7008830C7 /* DateMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CC3924CA2FC7008830C7 /* DateMeApp.swift */; };
 		7460E63825A38A3100DD39DB /* DateMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7460E63725A38A3100DD39DB /* DateMeTests.swift */; };
+		746C289A25A4B2CC007EA921 /* MockedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746C289925A4B2CC007EA921 /* MockedService.swift */; };
+		746C28AA25A4CAB6007EA921 /* CombineExpectations in Frameworks */ = {isa = PBXBuildFile; productRef = 746C28A925A4CAB6007EA921 /* CombineExpectations */; };
 		74824B9924C8502000008B49 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9824C8502000008B49 /* ServiceDependencies.swift */; };
 		74824B9B24C8506600008B49 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9A24C8506600008B49 /* AuthenticationService.swift */; };
 		74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */; };
@@ -80,6 +82,7 @@
 		7460E63525A38A3100DD39DB /* DateMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DateMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7460E63725A38A3100DD39DB /* DateMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMeTests.swift; sourceTree = "<group>"; };
 		7460E63925A38A3100DD39DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		746C289925A4B2CC007EA921 /* MockedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedService.swift; sourceTree = "<group>"; };
 		74824B9824C8502000008B49 /* ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDependencies.swift; sourceTree = "<group>"; };
 		74824B9A24C8506600008B49 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		74824B9C24C8507900008B49 /* PreviewAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAuthenticationService.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				746C28AA25A4CAB6007EA921 /* CombineExpectations in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +249,7 @@
 			children = (
 				748E416625A48D830021AA29 /* AppStore+mockStore.swift */,
 				748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */,
+				746C289925A4B2CC007EA921 /* MockedService.swift */,
 				748E417225A48F1E0021AA29 /* Services */,
 			);
 			path = Mock;
@@ -326,6 +331,9 @@
 				7460E63B25A38A3100DD39DB /* PBXTargetDependency */,
 			);
 			name = DateMeTests;
+			packageProductDependencies = (
+				746C28A925A4CAB6007EA921 /* CombineExpectations */,
+			);
 			productName = DateMeTests;
 			productReference = 7460E63525A38A3100DD39DB /* DateMeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -361,6 +369,7 @@
 			packageReferences = (
 				74B2AD1F259B4F9500B71A21 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
+				746C28A825A4CAB6007EA921 /* XCRemoteSwiftPackageReference "CombineExpectations" */,
 			);
 			productRefGroup = 7411BF0724C4C51D00F90E81 /* Products */;
 			projectDirPath = "";
@@ -433,6 +442,7 @@
 			files = (
 				748E416D25A48DC60021AA29 /* MockServiceDependencies.swift in Sources */,
 				748E417425A48F2E0021AA29 /* MockAuthenticationService.swift in Sources */,
+				746C289A25A4B2CC007EA921 /* MockedService.swift in Sources */,
 				7460E63825A38A3100DD39DB /* DateMeTests.swift in Sources */,
 				748E416725A48D830021AA29 /* AppStore+mockStore.swift in Sources */,
 			);
@@ -697,6 +707,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		746C28A825A4CAB6007EA921 /* XCRemoteSwiftPackageReference "CombineExpectations" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/CombineExpectations";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
 		748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
@@ -716,6 +734,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		746C28A925A4CAB6007EA921 /* CombineExpectations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 746C28A825A4CAB6007EA921 /* XCRemoteSwiftPackageReference "CombineExpectations" */;
+			productName = CombineExpectations;
+		};
 		748587DB259DFF920089BF2D /* BottomBar-SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;

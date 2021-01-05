@@ -9,7 +9,7 @@
 import Combine
 @testable import Date_Me
 
-class MockAuthenticationService: AuthenticationService {
+class MockAuthenticationService: AuthenticationService, MockService {
     
     var mockedSignUpWithEmail: AnyPublisher<Void, AuthenticationError>!
     var mockedLoginWithEmail: AnyPublisher<Void, AuthenticationError>!

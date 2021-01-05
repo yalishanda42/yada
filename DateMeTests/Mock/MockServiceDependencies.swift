@@ -10,5 +10,9 @@ import Foundation
 @testable import Date_Me
 
 class MockServiceDependencies: ServiceDependencies {
-    lazy var authenticationService: AuthenticationService = MockAuthenticationService()
+    let authenticationService: AuthenticationService
+    
+    init(authenticationService: MockAuthenticationService = .init()) {
+        self.authenticationService = authenticationService
+    }
 }

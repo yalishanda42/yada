@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AppAction {
+enum AppAction: Equatable {
     case logIn(email: String, password: String)
     case signUp(email: String, password: String, passwordRepeated: String)
     
