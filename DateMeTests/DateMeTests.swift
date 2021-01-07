@@ -27,39 +27,39 @@ class DateMeTests: XCTestCase {
     
     func testReducePresentAuthenticationScreen() throws {
         let store = AppStore.mockStore(initialState: .init(authScreenIsPresented: false))
-        store.send(.presentAuthenticationScreen)
+        store.send(.showAuthentication)
         XCTAssert(store.state.authScreenIsPresented)
     }
 
     func testReduceHideAuthenticationScreen() throws {
         let store = AppStore.mockStore(initialState: .init(authScreenIsPresented: true))
-        store.send(.hideAuthenticationScreen)
+        store.send(.hideAuthentication)
         XCTAssert(!store.state.authScreenIsPresented)
     }
     
     func testReducePresentAlert() throws {
         let store = AppStore.mockStore(initialState: .init(alertIsPresented: false))
         let message = "Test message 123"
-        store.send(.presentAlert(message: message))
+        store.send(.showAlert(message: message))
         XCTAssert(store.state.alertIsPresented)
         XCTAssertEqual(store.state.alertTextMessage, message)
     }
     
     func testReduceDismissAlert() throws {
         let store = AppStore.mockStore(initialState: .init(alertIsPresented: true))
-        store.send(.dismissAlert)
+        store.send(.hideAlert)
         XCTAssert(!store.state.alertIsPresented)
     }
     
     func testReduceTapSettings() throws {
         let store = AppStore.mockStore(initialState: .init(settingsAreShown: false))
-        store.send(.tapSettings)
+        store.send(.showSettings)
         XCTAssert(store.state.settingsAreShown)
     }
     
     func testReducePopBackSettings() throws {
         let store = AppStore.mockStore(initialState: .init(settingsAreShown: true))
-        store.send(.popBackSettings)
+        store.send(.hideSettings)
         XCTAssert(!store.state.settingsAreShown)
     }
     

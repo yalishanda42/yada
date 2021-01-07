@@ -25,7 +25,7 @@ struct RootView: View {
                 message: Text(store.state.alertTextMessage),
                 dismissButton: .default(Text("alert.ok"),
                     action: {
-                        self.store.send(.dismissAlert)
+                        self.store.send(.hideAlert)
                     }
                 )
             )

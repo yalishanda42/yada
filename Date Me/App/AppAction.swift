@@ -12,14 +12,14 @@ enum AppAction: Equatable {
     case logIn(email: String, password: String)
     case signUp(email: String, password: String, passwordRepeated: String)
     
-    case presentAlert(message: String)
-    case dismissAlert
+    case showAlert(message: String)
+    case hideAlert
     
-    case presentAuthenticationScreen
-    case hideAuthenticationScreen
+    case showAuthentication
+    case hideAuthentication
     
     case selectTab(AppState.Tab)
     
-    case tapSettings
-    case popBackSettings
+    case showSettings
+    case hideSettings
 }

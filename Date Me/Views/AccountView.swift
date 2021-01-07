@@ -35,11 +35,11 @@ struct AccountView: View {
                 NavigationLink(
                     destination: SettingsView()
                         .withCustomBackButton {
-                            store.send(.popBackSettings)
+                            store.send(.hideSettings)
                     },
                     isActive: .constant(store.state.settingsAreShown)) {
                     Button {
-                        store.send(.tapSettings)
+                        store.send(.showSettings)
                     } label: {
                         Image(systemName: "gear")
                             .font(.system(

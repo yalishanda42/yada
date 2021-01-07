@@ -21,47 +21,47 @@ enum AppReducer {
             return environment
                 .authenticationService
                 .logInWithEmail(email: email, password: password)
-                .map { _ in .hideAuthenticationScreen }
+                .map { _ in .hideAuthentication }
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
-                    return Just(.presentAlert(message: error.localizedErrorMessage))
+                    return Just(.showAlert(message: error.localizedErrorMessage))
                         .eraseToAnyPublisher()
                 }.eraseToAnyPublisher()
             
         case .signUp(email: let email, password: let password, passwordRepeated: let password2):
             guard password == password2 else {
-                return Just(.presentAlert(message: AuthenticationError.passwordsDoNotMatch.localizedErrorMessage))
+                return Just(.showAlert(message: AuthenticationError.passwordsDoNotMatch.localizedErrorMessage))
                     .eraseToAnyPublisher()
             }
             return environment
                 .authenticationService
                 .signUpWithEmail(email: email, password: password)
-                .map { _ in .hideAuthenticationScreen }
+                .map { _ in .hideAuthentication }
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
-                    return Just(.presentAlert(message: error.localizedErrorMessage))
+                    return Just(.showAlert(message: error.localizedErrorMessage))
                         .eraseToAnyPublisher()
                 }.eraseToAnyPublisher()
             
-        case .presentAlert(message: let message):
+        case .showAlert(message: let message):
             state.alertTextMessage = message
             state.alertIsPresented = true
             
-        case .dismissAlert:
+        case .hideAlert:
             state.alertIsPresented = false
             state.alertTextMessage = ""
             
-        case .presentAuthenticationScreen:
+        case .showAuthentication:
             state.authScreenIsPresented = true
             
-        case .hideAuthenticationScreen:
+        case .hideAuthentication:
             state.authScreenIsPresented = false
             
         case .selectTab(let tab):
             state.selectedTab = tab
             
-        case .tapSettings:
+        case .showSettings:
             state.settingsAreShown = true
             
-        case .popBackSettings:
+        case .hideSettings:
             state.settingsAreShown = false
         }
         
