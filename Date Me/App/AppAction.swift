@@ -11,6 +11,7 @@ import Foundation
 enum AppAction: Equatable {
     case logIn(email: String, password: String)
     case signUp(email: String, password: String, passwordRepeated: String)
+    case authenticationSuccess(AuthenticationInfo)
     
     case showAlert(message: String)
     case hideAlert
@@ -22,4 +23,12 @@ enum AppAction: Equatable {
     
     case showSettings
     case hideSettings
+}
+
+extension AppAction {
+    struct AuthenticationInfo: Equatable {
+        var id: String = ""
+        var email: String = ""
+        var fullName: String = ""
+    }
 }

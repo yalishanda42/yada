@@ -9,11 +9,11 @@
 import Combine
 
 class PreviewAuthenticationService: AuthenticationService {
-    func signUpWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError> {
-        return Just<Void>(()).mapError { _ in .unknown }.eraseToAnyPublisher()
+    func signUpWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
+        return Just(.init(id: "id", email: "email@example.com", fullName: "Alexander Ignatov")).mapError { _ in .unknown }.eraseToAnyPublisher()
     }
     
-    func logInWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError> {
-        return Just<Void>(()).mapError { _ in .unknown }.eraseToAnyPublisher()
+    func logInWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
+        return Just(.init(id: "id", email: "email@example.com", fullName: "Alexander Ignatov")).mapError { _ in .unknown }.eraseToAnyPublisher()
     }
 }

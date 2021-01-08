@@ -21,7 +21,7 @@ enum AppReducer {
             return environment
                 .authenticationService
                 .logInWithEmail(email: email, password: password)
-                .map { _ in .hideAuthentication }
+                .map { .authenticationSuccess($0) }
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
                     return Just(.showAlert(message: error.localizedErrorMessage))
                         .eraseToAnyPublisher()
@@ -35,7 +35,7 @@ enum AppReducer {
             return environment
                 .authenticationService
                 .signUpWithEmail(email: email, password: password)
-                .map { _ in .hideAuthentication }
+                .map { .authenticationSuccess($0) }
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
                     return Just(.showAlert(message: error.localizedErrorMessage))
                         .eraseToAnyPublisher()
@@ -63,11 +63,23 @@ enum AppReducer {
             
         case .hideSettings:
             state.settingsAreShown = false
+            
+        case .authenticationSuccess(let userInfo):
+            switch state.user {
+            case .guest(let oldData):
+                // migrate guest to auth
+                state.user = .authenticated(.init(with: userInfo, from: oldData))
+            case .authenticated(_):
+                state.user = .authenticated(.init(with: userInfo))
+            }
+            return Just(.hideAuthentication).eraseToAnyPublisher()
         }
         
         return Empty().eraseToAnyPublisher()
     }
 }
+
+// MARK: - Error Message
 
 extension AuthenticationError {
     var localizedErrorMessage: String {
@@ -92,3 +104,14 @@ extension AuthenticationError {
     }
 }
 
+extension AppState.AuthenticatedUser {
+    init(with info: AppAction.AuthenticationInfo, from oldData: AppState.GuestUser) {
+        self.email = info.email
+        self.fullName = info.fullName
+    }
+    
+    init(with info: AppAction.AuthenticationInfo) {
+        self.email = info.email
+        self.fullName = info.fullName
+    }
+}

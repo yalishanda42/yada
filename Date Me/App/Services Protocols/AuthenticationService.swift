@@ -9,9 +9,9 @@
 import Combine
 
 protocol AuthenticationService {    
-    func signUpWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError>
+    func signUpWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError>
     
-    func logInWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError>
+    func logInWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError>
 }
 
 enum AuthenticationError: Error {

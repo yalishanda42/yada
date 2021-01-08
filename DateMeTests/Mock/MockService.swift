@@ -1,5 +1,5 @@
 //
-//  MockedService.swift
+//  MockService.swift
 //  DateMeTests
 //
 //  Created by Alexander Ignatov on 5.01.21.

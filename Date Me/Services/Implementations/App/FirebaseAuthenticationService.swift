@@ -10,28 +10,40 @@ import Firebase
 import Combine
 
 class FirebaseAuthenticationService: AuthenticationService {
-    func signUpWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError> {
+    func signUpWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
         return Future { event in
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                guard result != nil else {
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+                guard let self = self else { return }
+                guard let result = result else {
                     event(.failure(.init(error)))
                     return
                 }
-                event(.success(()))
+                let info = self.retrieveAuthInfoFromFirebaseUserResult(result)
+                event(.success(info))
             }
         }.eraseToAnyPublisher()
     }
     
-    func logInWithEmail(email: String, password: String) -> AnyPublisher<Void, AuthenticationError> {
+    func logInWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
         return Future { event in
-            Auth.auth().signIn(withEmail: email, password: password) { result, error in
-                guard result != nil else {
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+                guard let self = self else { return }
+                guard let result = result else {
                     event(.failure(.init(error)))
                     return
                 }
-                event(.success(()))
+                let info = self.retrieveAuthInfoFromFirebaseUserResult(result)
+                event(.success(info))
             }
         }.eraseToAnyPublisher()
+    }
+    
+    private func retrieveAuthInfoFromFirebaseUserResult(_ result: AuthDataResult) -> AppAction.AuthenticationInfo {
+        let user = result.user
+        let id = user.uid
+        let email = user.email ?? "" // TODO
+        let names = user.displayName ?? "" // TODO
+        return .init(id: id, email: email, fullName: names)
     }
 }
 

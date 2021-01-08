@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 @testable import Date_Me
 
 extension AppStore {
@@ -18,5 +19,16 @@ extension AppStore {
               reducer: AppReducer.reduce,
               environment: mockServices
         )
+    }
+    
+    static func mockReduce(
+        state: inout AppState,
+        action: AppAction,
+        environment: ServiceDependencies
+    ) -> AnyPublisher<AppAction, Never> {
+        AppReducer
+            .reduce(state: &state, action: action, environment: environment)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }

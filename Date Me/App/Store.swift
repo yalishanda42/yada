@@ -37,18 +37,4 @@ final class Store<State, Action, Environment>: ObservableObject {
             .sink(receiveValue: send)
             .store(in: &disposeBag)
     }
-    
-    /// ! Use for testing purposes only.
-    func obtainReducerPublisher(_ action: Action) -> AnyPublisher<Action, Never> {
-        reducer(&state, action, environment)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-    
-    /// ! Use for testing purposes only.
-    func applyReducerPublisher(_ publisher: AnyPublisher<Action, Never>) {
-        publisher
-            .sink(receiveValue: send)
-            .store(in: &disposeBag)
-    }
 }

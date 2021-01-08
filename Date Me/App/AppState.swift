@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alexander Ignatov. All rights reserved.
 //
 
-struct AppState {
+struct AppState: Equatable {
     
     // MARK: - Alert
     var alertIsPresented = false
@@ -20,9 +20,15 @@ struct AppState {
     
     // MARK: - Settings
     var settingsAreShown = false
+    
+    // MARK: - User
+    var user: UserState = .guest(.init())
 }
 
+// MARK: - Nested Types
+
 extension AppState {
+    // MARK: - Tab
     enum Tab: Int, CaseIterable, Equatable {
         case messages
         case match
@@ -31,5 +37,21 @@ extension AppState {
         var index: Int { rawValue }
         
         static var `default`: Self { .messages }
+    }
+    
+    // MARK: - User State
+    enum UserState: Equatable {
+        case guest(GuestUser)
+        case authenticated(AuthenticatedUser)
+    }
+    
+    // MARK: - Guest User
+    struct GuestUser: Equatable {
+    }
+    
+    // MARK: - Authenticated User
+    struct AuthenticatedUser: Equatable {
+        var email = ""
+        var fullName = ""
     }
 }
