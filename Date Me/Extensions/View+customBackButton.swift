@@ -15,8 +15,8 @@ extension View {
                 HStack {
                     Image(systemName: "chevron.left")
                         .font(.system(size: 16, weight: .regular))
-                        .foregroundColor(.init(.systemBlue))
-                    Text("navigation.back").foregroundColor(.init(.systemBlue))
+                        .foregroundColor(.init(.fromAsset(.accentPeachy)))
+                    Text("navigation.back").foregroundColor(.init(.fromAsset(.accentPeachy)))
                 }
             })
     }

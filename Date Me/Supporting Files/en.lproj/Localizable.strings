@@ -15,6 +15,7 @@
 "auth.signup" = "Sign Up";
 "auth.existing" = "Existing";
 "auth.new" = "New";
+"auth.dismiss" = "Cancel";
 
 "auth.error.email_already_in_use" = "The email is already in use with another account";
 "auth.error.disabled_account" = "Your account has been disabled. Please contact support.";
@@ -33,3 +34,5 @@
 "tab.account" = "Me";
 
 "navigation.back" = "Back";
+
+"account.authenticate_button" = "Log in or sign up";

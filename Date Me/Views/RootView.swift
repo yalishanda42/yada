@@ -12,23 +12,28 @@ struct RootView: View {
     
     @EnvironmentObject var store: AppStore
     
-    private var currentView: some View {
-        store.state.authScreenIsPresented
-            ? AuthenticationView().eraseToAnyView()
-            : TabBar().eraseToAnyView()
+    var body: some View {
+        currentView
+            .alert(isPresented: .constant(store.state.alertIsPresented)) {
+                Alert(
+                    title: Text("alert.error"),
+                    message: Text(store.state.alertTextMessage),
+                    dismissButton: .default(Text("alert.ok"),
+                        action: {
+                            store.send(.hideAlert)
+                        }
+                    )
+                )
+            }
     }
     
-    var body: some View {
-        currentView.alert(isPresented: .constant(store.state.alertIsPresented)) {
-            Alert(
-                title: Text("alert.error"),
-                message: Text(store.state.alertTextMessage),
-                dismissButton: .default(Text("alert.ok"),
-                    action: {
-                        self.store.send(.hideAlert)
-                    }
-                )
-            )
+    var currentView: some View {
+        if store.state.authScreenIsPresented {
+            return AuthenticationView {
+                store.send(.hideAuthentication)
+            }.eraseToAnyView()
+        } else {
+            return TabBar().eraseToAnyView()
         }
     }
 }
@@ -37,6 +42,14 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView().environmentObject(DateMeApp.previewStore())
+        RootView()
+            .environmentObject(DateMeApp.previewStore())
+            .previewDisplayName("Light")
+            .preferredColorScheme(.light)
+        
+        RootView()
+            .environmentObject(DateMeApp.previewStore())
+            .previewDisplayName("Dark")
+            .preferredColorScheme(.dark)
     }
 }

@@ -10,7 +10,8 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    @State var mode: Mode = .signIn
+    var cancelAction: (() -> Void)?
+    @State private var mode: Mode = .signIn
             
     var body: some View {
         ZStack {
@@ -89,6 +90,19 @@ struct AuthenticationView: View {
                     
                 }.padding()
             }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        cancelAction?()
+                    } label: {
+                        Text("auth.dismiss").fontWeight(.bold)
+                    }.padding(.trailing, 28)
+                    .accentColor(.fromAsset(.accentRed))
+                }
+                Spacer()
+            }
         }
     }
 }
@@ -123,6 +137,12 @@ struct SegmentButton: View {
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationView()
+            .previewDisplayName("Light")
+            .preferredColorScheme(.light)
+        
+        AuthenticationView()
+            .previewDisplayName("Dark")
+            .preferredColorScheme(.dark)
     }
 }
 
