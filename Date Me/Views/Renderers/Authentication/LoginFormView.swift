@@ -10,9 +10,10 @@ import SwiftUI
 
 struct LoginFormView: View {
     
-    @EnvironmentObject var store: AppStore
-    
     let mode: AuthenticationView.Mode
+    
+    var signUpAction: ((String, String, String) -> Void)? = nil
+    var signInAction: ((String, String) -> Void)? = nil
     
     @State var email = ""
     @State var password = ""
@@ -82,9 +83,9 @@ struct LoginFormView: View {
             Button(action: {
                 switch mode {
                 case .signUp:
-                    store.send(.signUp(email: email, password: password, passwordRepeated: passwordRepeated))
+                    signUpAction?(email, password, passwordRepeated)
                 case .signIn:
-                    store.send(.logIn(email: email, password: password))
+                    signInAction?(email, password)
                 }
             }) {
                 Text(verbatim: mode.localizedButtonText.uppercased())

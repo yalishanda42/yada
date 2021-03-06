@@ -21,7 +21,7 @@ struct TabBar: View {
             BottomBar(selectedIndex: store.selectedTabIndexBinding) {
                 return AppState.Tab.allCases.map { $0.bottomBarItem }
             }
-        }
+        }.edgesIgnoringSafeArea(.bottom)
     }
 }
 

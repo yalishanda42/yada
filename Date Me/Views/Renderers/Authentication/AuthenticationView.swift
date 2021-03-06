@@ -10,7 +10,10 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    var cancelAction: (() -> Void)?
+    var cancelAction: (() -> Void)? = nil
+    var signUpAction: ((String, String, String) -> Void)? = nil
+    var signInAction: ((String, String) -> Void)? = nil
+    
     @State private var mode: Mode = .signIn
             
     var body: some View {
@@ -47,7 +50,11 @@ struct AuthenticationView: View {
                     .clipShape(Capsule())
                     .padding(.top, 25)
                     
-                    LoginFormView(mode: mode)
+                    LoginFormView(
+                        mode: mode,
+                        signUpAction: signUpAction,
+                        signInAction: signInAction
+                    )
                     
                     if mode.buttonIndex == 0 {
                         Button(action: {

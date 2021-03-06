@@ -263,15 +263,31 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		74CEE85424D4C89500898215 /* Views */ = {
+		74C29C3025F40E5500524B91 /* Containers */ = {
 			isa = PBXGroup;
 			children = (
 				7485402524C793470077A31D /* RootView.swift */,
-				7411BF3424C4EF5000F90E81 /* Authentication */,
 				7411BF3B24C62AAF00F90E81 /* TabBar.swift */,
+				7411BF4124C62D4C00F90E81 /* AccountView.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		74C29C3125F40E6600524B91 /* Renderers */ = {
+			isa = PBXGroup;
+			children = (
+				7411BF3424C4EF5000F90E81 /* Authentication */,
+			);
+			path = Renderers;
+			sourceTree = "<group>";
+		};
+		74CEE85424D4C89500898215 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				74C29C3025F40E5500524B91 /* Containers */,
+				74C29C3125F40E6600524B91 /* Renderers */,
 				7411BF3D24C62D2F00F90E81 /* MessagesView.swift */,
 				7411BF3F24C62D3E00F90E81 /* MatchView.swift */,
-				7411BF4124C62D4C00F90E81 /* AccountView.swift */,
 				748587DE259E13B00089BF2D /* SettingsView.swift */,
 			);
 			path = Views;
