@@ -22,6 +22,10 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
 
+      - name: Create GoogleService-Info.plist
+        run: |
+          echo $GOOGLE_INFO_PLIST | base64 --decode > $GITHUB_WORKSPACE/Date\ Me/GoogleService-Info.plist
+
       - name: Build
         env:
           scheme: ${{ 'default' }}
