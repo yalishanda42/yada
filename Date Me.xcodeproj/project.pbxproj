@@ -40,10 +40,12 @@
 		748E416725A48D830021AA29 /* AppStore+mockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E416625A48D830021AA29 /* AppStore+mockStore.swift */; };
 		748E416D25A48DC60021AA29 /* MockServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */; };
 		748E417425A48F2E0021AA29 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */; };
+		74A45E1F25F57C0F00037B3A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A45E1E25F57C0F00037B3A /* CardView.swift */; };
 		74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74B2AD20259B4F9500B71A21 /* FirebaseAuth */; };
 		74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */; };
 		74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */; };
 		74D53AE824C8624500D4C29A /* PreviewServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */; };
+		74DE7CB125F4137E0098D734 /* CardsDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE7CB025F4137E0098D734 /* CardsDeckView.swift */; };
 		74FFB224259D1A3C0013B8A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74FFB226259D1A3C0013B8A4 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -93,9 +95,11 @@
 		748E416625A48D830021AA29 /* AppStore+mockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+mockStore.swift"; sourceTree = "<group>"; };
 		748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceDependencies.swift; sourceTree = "<group>"; };
 		748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
+		74A45E1E25F57C0F00037B3A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+eraseToAnyView.swift"; sourceTree = "<group>"; };
 		74D53AE524C861E500D4C29A /* FirebaseAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationService.swift; sourceTree = "<group>"; };
 		74D53AE724C8624500D4C29A /* PreviewServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewServiceDependencies.swift; sourceTree = "<group>"; };
+		74DE7CB025F4137E0098D734 /* CardsDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDeckView.swift; sourceTree = "<group>"; };
 		74FFB225259D1A3C0013B8A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +267,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		74A45E1D25F57BFD00037B3A /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				74DE7CB025F4137E0098D734 /* CardsDeckView.swift */,
+				74A45E1E25F57C0F00037B3A /* CardView.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
 		74C29C3025F40E5500524B91 /* Containers */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +289,7 @@
 		74C29C3125F40E6600524B91 /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
+				74A45E1D25F57BFD00037B3A /* Cards */,
 				7411BF3424C4EF5000F90E81 /* Authentication */,
 			);
 			path = Renderers;
@@ -437,6 +451,7 @@
 				7411BF4024C62D3E00F90E81 /* MatchView.swift in Sources */,
 				7411BF2E24C4CA8600F90E81 /* Color+fromAsset.swift in Sources */,
 				74824B9924C8502000008B49 /* ServiceDependencies.swift in Sources */,
+				74DE7CB125F4137E0098D734 /* CardsDeckView.swift in Sources */,
 				748587E4259E13FD0089BF2D /* View+customBackButton.swift in Sources */,
 				74824B9B24C8506600008B49 /* AuthenticationService.swift in Sources */,
 				74824B9D24C8507900008B49 /* PreviewAuthenticationService.swift in Sources */,
@@ -444,6 +459,7 @@
 				74D53AE624C861E500D4C29A /* FirebaseAuthenticationService.swift in Sources */,
 				74016C4D24CDD1F600E1C96E /* AppState.swift in Sources */,
 				74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */,
+				74A45E1F25F57C0F00037B3A /* CardView.swift in Sources */,
 				74016C5324CDD43E00E1C96E /* AppReducer.swift in Sources */,
 				74016C4A24CDD17F00E1C96E /* Store.swift in Sources */,
 				7411BF3224C4E75600F90E81 /* Image+fromAsset.swift in Sources */,
