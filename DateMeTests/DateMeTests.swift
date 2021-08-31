@@ -9,9 +9,22 @@
 import XCTest
 @testable import Date_Me
 import Combine
-import CombineExpectations
+import ComposableArchitecture
 
 class DateMeTests: XCTestCase {
+    
+    // MARK: - Properties
+    
+    static func mockStore(
+        initialState: AppState = .init(),
+        mockServices: MockServiceDependencies = .init()
+    ) -> TestStore<AppState, AppState, AppAction, AppAction, ServiceDependencies> {
+        .init(
+            initialState: initialState,
+            reducer: AppReducer.reduce,
+            environment: mockServices as ServiceDependencies
+        )
+    }
     
     // MARK: - Set up
 
@@ -25,56 +38,53 @@ class DateMeTests: XCTestCase {
     
     // MARK: - Unit Tests: Reducer
     
-    func testReducePresentAuthenticationScreen() throws {
-        let store = AppStore.mockStore(initialState: .init(authScreenIsPresented: false))
-        store.send(.showAuthentication)
-        XCTAssert(store.state.authScreenIsPresented)
+    func testPresentAuthenticationScreen() throws {
+        let store = Self.mockStore(initialState: .init(authScreenIsPresented: false))
+        store.assert(.send(.showAuthentication, { $0.authScreenIsPresented = true }))
     }
 
-    func testReduceHideAuthenticationScreen() throws {
-        let store = AppStore.mockStore(initialState: .init(authScreenIsPresented: true))
-        store.send(.hideAuthentication)
-        XCTAssert(!store.state.authScreenIsPresented)
+    func testHideAuthenticationScreen() throws {
+        let store = Self.mockStore(initialState: .init(authScreenIsPresented: true))
+        store.assert(.send(.hideAuthentication, { $0.authScreenIsPresented = false }))
     }
     
-    func testReducePresentAlert() throws {
-        let store = AppStore.mockStore(initialState: .init(alertIsPresented: false))
+    func testPresentAlert() throws {
+        let store = Self.mockStore(initialState: .init(alertIsPresented: false))
         let message = "Test message 123"
-        store.send(.showAlert(message: message))
-        XCTAssert(store.state.alertIsPresented)
-        XCTAssertEqual(store.state.alertTextMessage, message)
+        store.assert(.send(.showAlert(message: message), {
+            $0.alertIsPresented = true
+            $0.alertTextMessage = message
+        }))
     }
     
-    func testReduceDismissAlert() throws {
-        let store = AppStore.mockStore(initialState: .init(alertIsPresented: true))
-        store.send(.hideAlert)
-        XCTAssert(!store.state.alertIsPresented)
+    func testDismissAlert() throws {
+        let store = Self.mockStore(initialState: .init(alertIsPresented: true))
+        store.assert(.send(.hideAlert, { $0.alertIsPresented = false }))
     }
     
-    func testReduceTapSettings() throws {
-        let store = AppStore.mockStore(initialState: .init(settingsAreShown: false))
-        store.send(.showSettings)
-        XCTAssert(store.state.settingsAreShown)
+    func testTapSettings() throws {
+        let store = Self.mockStore(initialState: .init(settingsAreShown: false))
+        store.assert(.send(.showSettings, { $0.settingsAreShown = true }))
     }
     
-    func testReducePopBackSettings() throws {
-        let store = AppStore.mockStore(initialState: .init(settingsAreShown: true))
-        store.send(.hideSettings)
-        XCTAssert(!store.state.settingsAreShown)
+    func testPopBackSettings() throws {
+        let store = Self.mockStore(initialState: .init(settingsAreShown: true))
+        store.assert(.send(.hideSettings, { $0.settingsAreShown = false }))
     }
     
-    func testReduceSelectTab() throws {
-        let store = AppStore.mockStore()
-        for tab in AppState.Tab.allCases + [.default] {
-            store.send(.selectTab(tab))
-            XCTAssertEqual(store.state.selectedTab, tab, "Could not select \(tab)")
-        }
+    func testSelectTab() throws {
+        let store = Self.mockStore()
+        let tabs = AppState.Tab.allCases + [.default]
+        store.assert(tabs.map { tab in
+            .send(.selectTab(tab), { store in store.selectedTab = tab })
+        })
     }
     
-    func testReduceLoginSuccess() throws {
+    func testLoginSuccess() throws {
         let email = "correct@email.com"
         let password = "correct_password"
-        var state = AppState(authScreenIsPresented: true)
+        let state = AppState(authScreenIsPresented: true)
+        let guestState = AppState.GuestUser()
         let action: AppAction = .logIn(email: email, password: password)
         let info = AppAction.AuthenticationInfo()
         let services = MockServiceDependencies(
@@ -84,19 +94,22 @@ class DateMeTests: XCTestCase {
                         .eraseToAnyPublisher()
                 )
         )
+        let store = Self.mockStore(initialState: state, mockServices: services)
         
-        let publisher = AppStore.mockReduce(state: &state, action: action, environment: services)
-        let recorder = publisher.record()
-        let result = try wait(for: recorder.elements, timeout: 0.5)
+        let expectedUserState: AppState.UserState = .authenticated(.init(with: info, from: guestState))
         
-        XCTAssertEqual(result, [.authenticationSuccess(info)])
+        store.assert([
+            .send(action),
+            .receive(.authenticationSuccess(info), { $0.user = expectedUserState }),
+            .receive(.hideAuthentication, { $0.authScreenIsPresented = false }),
+        ])
     }
     
-    func testReduceLoginError() throws {
+    func testLoginError() throws {
         let email = "incorrect@email.com"
         let password = "password"
         let error = AuthenticationError.invalidEmail
-        var state = AppState(authScreenIsPresented: true)
+        let state = AppState(authScreenIsPresented: true)
         let action: AppAction = .logIn(email: email, password: password)
         let services = MockServiceDependencies(
             authenticationService: MockAuthenticationService()
@@ -104,20 +117,24 @@ class DateMeTests: XCTestCase {
                         .eraseToAnyPublisher()
                 )
         )
+        let store = Self.mockStore(initialState: state, mockServices: services)
         
-        let publisher = AppStore.mockReduce(state: &state, action: action, environment: services)
-        let recorder = publisher.record()
-        let result = try wait(for: recorder.elements, timeout: 0.5)
-        
-        XCTAssertEqual(result, [.showAlert(message: error.localizedErrorMessage)])
+        store.assert([
+            .send(action),
+            .receive(.showAlert(message: error.localizedErrorMessage), {
+                $0.alertIsPresented = true
+                $0.alertTextMessage = error.localizedErrorMessage
+            }),
+        ])
     }
     
-    func testReduceSignUpSuccess() throws {
+    func testSignUpSuccess() throws {
         let email = "correct@email.com"
         let password = "correct_password"
         let password2 = "correct_password"
         
-        var state = AppState(authScreenIsPresented: true)
+        let state = AppState(authScreenIsPresented: true)
+        let guestState = AppState.GuestUser()
         let action: AppAction = .signUp(email: email, password: password, passwordRepeated: password2)
         let info = AppAction.AuthenticationInfo()
         let services = MockServiceDependencies(
@@ -128,36 +145,44 @@ class DateMeTests: XCTestCase {
                 )
         )
         
-        let publisher = AppStore.mockReduce(state: &state, action: action, environment: services)
-        let recorder = publisher.record()
-        let result = try wait(for: recorder.elements, timeout: 0.5)
+        let store = Self.mockStore(initialState: state, mockServices: services)
         
-        XCTAssertEqual(result, [.authenticationSuccess(info)])
+        let expectedUserState: AppState.UserState = .authenticated(.init(with: info, from: guestState))
+        
+        store.assert([
+            .send(action),
+            .receive(.authenticationSuccess(info), { $0.user = expectedUserState }),
+            .receive(.hideAuthentication, { $0.authScreenIsPresented = false }),
+        ])
     }
     
-    func testReduceSignUpErrorPasswordsEqual() throws {
+    func testSignUpErrorPasswordsEqual() throws {
         let email = "correct@email.com"
         let password = "password"
         let password2 = "incorrect_password"
         let error = AuthenticationError.passwordsDoNotMatch
-        var state = AppState(authScreenIsPresented: true)
+        let state = AppState(authScreenIsPresented: true)
         let action: AppAction = .signUp(email: email, password: password, passwordRepeated: password2)
         let services = MockServiceDependencies()
         
-        let publisher = AppStore.mockReduce(state: &state, action: action, environment: services)
-        let recorder = publisher.record()
-        let result = try wait(for: recorder.elements, timeout: 0.5)
+        let store = Self.mockStore(initialState: state, mockServices: services)
         
-        XCTAssertEqual(result, [.showAlert(message: error.localizedErrorMessage)])
+        store.assert([
+            .send(action),
+            .receive(.showAlert(message: error.localizedErrorMessage), {
+                $0.alertIsPresented = true
+                $0.alertTextMessage = error.localizedErrorMessage
+            }),
+        ])
     }
     
-    func testReduceSignUpErrorEmailInUse() throws {
+    func testSignUpErrorEmailInUse() throws {
         let email = "incorrect@email.com"
         let password = "correct_password"
         let password2 = "correct_password"
         let error = AuthenticationError.emailAlreadyInUse
         
-        var state = AppState(authScreenIsPresented: true)
+        let state = AppState(authScreenIsPresented: true)
         let action: AppAction = .signUp(email: email, password: password, passwordRepeated: password2)
         let services = MockServiceDependencies(
             authenticationService: MockAuthenticationService()
@@ -166,29 +191,14 @@ class DateMeTests: XCTestCase {
                 )
         )
         
-        let publisher = AppStore.mockReduce(state: &state, action: action, environment: services)
-        let recorder = publisher.record()
-        let result = try wait(for: recorder.elements, timeout: 0.5)
+        let store = Self.mockStore(initialState: state, mockServices: services)
         
-        XCTAssertEqual(result, [.showAlert(message: error.localizedErrorMessage)])
-    }
-    
-    func testReduceAuthSuccess() throws {
-        let id = "1"
-        let email = "correct@email.com"
-        let fullName = "AI"
-        let guestState = AppState.GuestUser()
-        let info = AppAction.AuthenticationInfo(id: id, email: email, fullName: fullName)
-        
-        var state = AppState(authScreenIsPresented: true, user: .guest(guestState))
-        let action: AppAction = .authenticationSuccess(info)
-        let services = MockServiceDependencies()
-        
-        let publisher = AppStore.mockReduce(state: &state, action: action, environment: services)
-        let recorder = publisher.record()
-        let result = try wait(for: recorder.elements, timeout: 0.5)
-        
-        XCTAssertEqual(state.user, .authenticated(.init(with: info, from: guestState)))
-        XCTAssertEqual(result, [.hideAuthentication])
+        store.assert([
+            .send(action),
+            .receive(.showAlert(message: error.localizedErrorMessage), {
+                $0.alertIsPresented = true
+                $0.alertTextMessage = error.localizedErrorMessage
+            }),
+        ])
     }
 }

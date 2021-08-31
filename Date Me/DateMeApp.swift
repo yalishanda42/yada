@@ -8,8 +8,11 @@
 
 import SwiftUI
 import Firebase
+import ComposableArchitecture
 
 // MARK: - App
+
+typealias AppStore = Store<AppState, AppAction>
 
 @main
 struct DateMeApp: App {
@@ -22,7 +25,7 @@ struct DateMeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView().environmentObject(store)
+            RootView(store: store)
         }
     }
     

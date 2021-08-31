@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74016C4A24CDD17F00E1C96E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74016C4924CDD17F00E1C96E /* Store.swift */; };
 		74016C4D24CDD1F600E1C96E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74016C4C24CDD1F600E1C96E /* AppState.swift */; };
 		74016C4F24CDD38500E1C96E /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74016C4E24CDD38500E1C96E /* AppAction.swift */; };
 		74016C5324CDD43E00E1C96E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74016C5224CDD43E00E1C96E /* AppReducer.swift */; };
@@ -26,6 +25,7 @@
 		7411BF4224C62D4C00F90E81 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411BF4124C62D4C00F90E81 /* AccountView.swift */; };
 		7411BF4B24C7787200F90E81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7411BF4A24C7787200F90E81 /* GoogleService-Info.plist */; };
 		7443CC3A24CA2FC7008830C7 /* DateMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443CC3924CA2FC7008830C7 /* DateMeApp.swift */; };
+		744CE9D826DEB3C000EA24FB /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 744CE9D726DEB3C000EA24FB /* ComposableArchitecture */; };
 		7460E63825A38A3100DD39DB /* DateMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7460E63725A38A3100DD39DB /* DateMeTests.swift */; };
 		746C289A25A4B2CC007EA921 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746C289925A4B2CC007EA921 /* MockService.swift */; };
 		746C28AA25A4CAB6007EA921 /* CombineExpectations in Frameworks */ = {isa = PBXBuildFile; productRef = 746C28A925A4CAB6007EA921 /* CombineExpectations */; };
@@ -37,7 +37,6 @@
 		748587DC259DFF920089BF2D /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 748587DB259DFF920089BF2D /* BottomBar-SwiftUI */; };
 		748587DF259E13B00089BF2D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748587DE259E13B00089BF2D /* SettingsView.swift */; };
 		748587E4259E13FD0089BF2D /* View+customBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748587E3259E13FD0089BF2D /* View+customBackButton.swift */; };
-		748E416725A48D830021AA29 /* AppStore+mockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E416625A48D830021AA29 /* AppStore+mockStore.swift */; };
 		748E416D25A48DC60021AA29 /* MockServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */; };
 		748E417425A48F2E0021AA29 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */; };
 		74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74B2AD20259B4F9500B71A21 /* FirebaseAuth */; };
@@ -58,7 +57,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		74016C4924CDD17F00E1C96E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		74016C4C24CDD1F600E1C96E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		74016C4E24CDD38500E1C96E /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		74016C5224CDD43E00E1C96E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 		7485402524C793470077A31D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		748587DE259E13B00089BF2D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		748587E3259E13FD0089BF2D /* View+customBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+customBackButton.swift"; sourceTree = "<group>"; };
-		748E416625A48D830021AA29 /* AppStore+mockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+mockStore.swift"; sourceTree = "<group>"; };
 		748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceDependencies.swift; sourceTree = "<group>"; };
 		748E417325A48F2E0021AA29 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		74BE7C1A2502D65C00321146 /* View+eraseToAnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+eraseToAnyView.swift"; sourceTree = "<group>"; };
@@ -106,6 +103,7 @@
 			files = (
 				74B2AD21259B4F9500B71A21 /* FirebaseAuth in Frameworks */,
 				748587DC259DFF920089BF2D /* BottomBar-SwiftUI in Frameworks */,
+				744CE9D826DEB3C000EA24FB /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +121,6 @@
 		74016C4B24CDD1B400E1C96E /* App */ = {
 			isa = PBXGroup;
 			children = (
-				74016C4924CDD17F00E1C96E /* Store.swift */,
 				74016C5224CDD43E00E1C96E /* AppReducer.swift */,
 				74016C4C24CDD1F600E1C96E /* AppState.swift */,
 				74016C4E24CDD38500E1C96E /* AppAction.swift */,
@@ -247,7 +244,6 @@
 		748E416525A48D0F0021AA29 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				748E416625A48D830021AA29 /* AppStore+mockStore.swift */,
 				748E416C25A48DC60021AA29 /* MockServiceDependencies.swift */,
 				746C289925A4B2CC007EA921 /* MockService.swift */,
 				748E417225A48F1E0021AA29 /* Services */,
@@ -328,6 +324,7 @@
 			packageProductDependencies = (
 				74B2AD20259B4F9500B71A21 /* FirebaseAuth */,
 				748587DB259DFF920089BF2D /* BottomBar-SwiftUI */,
+				744CE9D726DEB3C000EA24FB /* ComposableArchitecture */,
 			);
 			productName = "Date Me";
 			productReference = 7411BF0624C4C51D00F90E81 /* Date Me.app */;
@@ -386,6 +383,7 @@
 				74B2AD1F259B4F9500B71A21 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				748587DA259DFF920089BF2D /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
 				746C28A825A4CAB6007EA921 /* XCRemoteSwiftPackageReference "CombineExpectations" */,
+				744CE9D626DEB3C000EA24FB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 7411BF0724C4C51D00F90E81 /* Products */;
 			projectDirPath = "";
@@ -445,7 +443,6 @@
 				74016C4D24CDD1F600E1C96E /* AppState.swift in Sources */,
 				74BE7C1B2502D65C00321146 /* View+eraseToAnyView.swift in Sources */,
 				74016C5324CDD43E00E1C96E /* AppReducer.swift in Sources */,
-				74016C4A24CDD17F00E1C96E /* Store.swift in Sources */,
 				7411BF3224C4E75600F90E81 /* Image+fromAsset.swift in Sources */,
 				7443CC3A24CA2FC7008830C7 /* DateMeApp.swift in Sources */,
 				7411BF3924C4EFC900F90E81 /* LoginFormView.swift in Sources */,
@@ -460,7 +457,6 @@
 				748E417425A48F2E0021AA29 /* MockAuthenticationService.swift in Sources */,
 				746C289A25A4B2CC007EA921 /* MockService.swift in Sources */,
 				7460E63825A38A3100DD39DB /* DateMeTests.swift in Sources */,
-				748E416725A48D830021AA29 /* AppStore+mockStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +719,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		744CE9D626DEB3C000EA24FB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.25.1;
+			};
+		};
 		746C28A825A4CAB6007EA921 /* XCRemoteSwiftPackageReference "CombineExpectations" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/CombineExpectations";
@@ -750,6 +754,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		744CE9D726DEB3C000EA24FB /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 744CE9D626DEB3C000EA24FB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		746C28A925A4CAB6007EA921 /* CombineExpectations */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 746C28A825A4CAB6007EA921 /* XCRemoteSwiftPackageReference "CombineExpectations" */;

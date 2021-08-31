@@ -7,42 +7,50 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct RootView: View {
     
-    @EnvironmentObject var store: AppStore
+    let store: AppStore
     
     var body: some View {
-        TabBar()
-            .fullScreenCover(isPresented: store.authScreenIsPresentedBinding) {
-                AuthenticationView(
-                    cancelAction: {
-                        store.send(.hideAuthentication)
-                    },
-                    signUpAction: {
-                        store.send(.signUp(
-                            email: $0,
-                            password: $1,
-                            passwordRepeated: $2
-                        ))
-                    },
-                    signInAction: {
-                        store.send(.logIn(
-                            email: $0, password: $1
-                        ))
-                    }
-                ).alert(isPresented: .constant(store.state.alertIsPresented)) {
-                    Alert(
-                        title: Text("alert.error"),
-                        message: Text(store.state.alertTextMessage),
-                        dismissButton: .default(Text("alert.ok"),
-                            action: {
-                                store.send(.hideAlert)
-                            }
+        WithViewStore(store) { viewStore in
+            TabBar(store: store)
+                .fullScreenCover(isPresented: Binding<Bool>(get: {
+                        viewStore.authScreenIsPresented
+                    }, set: {
+                        viewStore.send($0 ? .showAuthentication : .hideAuthentication)
+                    })
+                ) {
+                    AuthenticationView(
+                        cancelAction: {
+                            viewStore.send(.hideAuthentication)
+                        },
+                        signUpAction: {
+                            viewStore.send(.signUp(
+                                email: $0,
+                                password: $1,
+                                passwordRepeated: $2
+                            ))
+                        },
+                        signInAction: {
+                            viewStore.send(.logIn(
+                                email: $0, password: $1
+                            ))
+                        }
+                    ).alert(isPresented: .constant(viewStore.alertIsPresented)) {
+                        Alert(
+                            title: Text("alert.error"),
+                            message: Text(viewStore.alertTextMessage),
+                            dismissButton: .default(Text("alert.ok"),
+                                action: {
+                                    viewStore.send(.hideAlert)
+                                }
+                            )
                         )
-                    )
+                    }
                 }
-            }
+        }
     }
 }
 
@@ -50,28 +58,12 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
-            .environmentObject(DateMeApp.previewStore())
+        RootView(store: DateMeApp.previewStore())
             .previewDisplayName("Light")
             .preferredColorScheme(.light)
         
-        RootView()
-            .environmentObject(DateMeApp.previewStore())
+        RootView(store: DateMeApp.previewStore())
             .previewDisplayName("Dark")
             .preferredColorScheme(.dark)
-    }
-}
-
-// MARK: - Helpers
-
-extension AppStore {
-    var authScreenIsPresentedBinding: Binding<Bool> {
-        .init {
-            self.state.authScreenIsPresented
-        } set: {
-            self.send(
-                $0 ? .showAuthentication : .hideAuthentication
-            )
-        }
     }
 }

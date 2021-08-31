@@ -8,20 +8,31 @@
 
 import SwiftUI
 import BottomBar_SwiftUI
+import ComposableArchitecture
 
 struct TabBar: View {
     
-    @EnvironmentObject var store: AppStore
+    let store: AppStore
     
     var body: some View {
-        VStack {
-            NavigationView {
-                store.state.selectedTab.view
-            }
-            BottomBar(selectedIndex: store.selectedTabIndexBinding) {
-                return AppState.Tab.allCases.map { $0.bottomBarItem }
-            }
-        }.edgesIgnoringSafeArea(.bottom)
+        WithViewStore(store) { viewStore in
+            VStack {
+                NavigationView {
+                    viewStore.selectedTab.view(store: store)
+                }
+                BottomBar(selectedIndex: Binding<Int>(
+                    get: {
+                        viewStore.selectedTab.index
+                    }, set: { newIndex in
+                        if let newTab = AppState.Tab(rawValue: newIndex) {
+                            viewStore.send(.selectTab(newTab))
+                        }
+                    })
+                ) {
+                    return AppState.Tab.allCases.map { $0.bottomBarItem }
+                }
+            }.edgesIgnoringSafeArea(.bottom)
+        }
     }
 }
 
@@ -52,14 +63,14 @@ extension AppState.Tab {
         .init(icon: icon, title: localizedTitle, color: .fromAsset(.accentPeachy))
     }
     
-    var view: some View {
+    func view(store: AppStore) -> some View {
         switch self {
         case .messages:
             return MessagesView().eraseToAnyView()
         case .match:
             return MatchView().eraseToAnyView()
         case .account:
-            return AccountView().eraseToAnyView()
+            return AccountView(store: store).eraseToAnyView()
         }
     }
 }
@@ -68,20 +79,6 @@ extension AppState.Tab {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar().environmentObject(DateMeApp.previewStore())
-    }
-}
-
-// MARK: - Helpers
-
-extension AppStore {
-    var selectedTabIndexBinding: Binding<Int> {
-        .init {
-            self.state.selectedTab.index
-        } set: { newIndex in
-            if let newTab = AppState.Tab(rawValue: newIndex) {
-                self.send(.selectTab(newTab))
-            }
-        }
+        TabBar(store: DateMeApp.previewStore())
     }
 }

@@ -8,38 +8,38 @@
 
 import Foundation
 import Combine
+import ComposableArchitecture
 
 enum AppReducer {
-    static func reduce(
-        state: inout AppState,
-        action: AppAction,
-        environment: ServiceDependencies
-    ) -> AnyPublisher<AppAction, Never> {
+    static let reduce = Reducer<AppState, AppAction, ServiceDependencies> {
+        state, action, environment in
+        
         switch action {
         
         case .logIn(email: let email, password: let password):
             return environment
                 .authenticationService
                 .logInWithEmail(email: email, password: password)
-                .map { .authenticationSuccess($0) }
+                .map(AppAction.authenticationSuccess)
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
                     return Just(.showAlert(message: error.localizedErrorMessage))
                         .eraseToAnyPublisher()
-                }.eraseToAnyPublisher()
+                }
+                .eraseToEffect()
             
         case .signUp(email: let email, password: let password, passwordRepeated: let password2):
             guard password == password2 else {
-                return Just(.showAlert(message: AuthenticationError.passwordsDoNotMatch.localizedErrorMessage))
-                    .eraseToAnyPublisher()
+                return .init(value: .showAlert(message: AuthenticationError.passwordsDoNotMatch.localizedErrorMessage))
             }
             return environment
                 .authenticationService
                 .signUpWithEmail(email: email, password: password)
-                .map { .authenticationSuccess($0) }
+                .map(AppAction.authenticationSuccess)
                 .catch { (error) -> AnyPublisher<AppAction, Never> in
                     return Just(.showAlert(message: error.localizedErrorMessage))
                         .eraseToAnyPublisher()
-                }.eraseToAnyPublisher()
+                }
+                .eraseToEffect()
             
         case .showAlert(message: let message):
             state.alertTextMessage = message
@@ -72,10 +72,10 @@ enum AppReducer {
             case .authenticated(_):
                 state.user = .authenticated(.init(with: userInfo))
             }
-            return Just(.hideAuthentication).eraseToAnyPublisher()
+            return .init(value: .hideAuthentication)
         }
         
-        return Empty().eraseToAnyPublisher()
+        return .none
     }
 }
 
