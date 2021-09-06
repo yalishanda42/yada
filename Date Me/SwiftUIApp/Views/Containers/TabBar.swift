@@ -20,13 +20,12 @@ struct TabBar: View {
                 NavigationView {
                     viewStore.selectedTab.view(store: store)
                 }
-                BottomBar(selectedIndex: Binding<Int>(
+                BottomBar(selectedIndex: viewStore.binding(
                     get: {
-                        viewStore.selectedTab.index
-                    }, set: { newIndex in
-                        if let newTab = AppState.Tab(rawValue: newIndex) {
-                            viewStore.send(.selectTab(newTab))
-                        }
+                        $0.selectedTab.index
+                    },
+                    send: {
+                        .selectTab(AppState.Tab(rawValue: $0) ?? .default)
                     })
                 ) {
                     return AppState.Tab.allCases.map { $0.bottomBarItem }

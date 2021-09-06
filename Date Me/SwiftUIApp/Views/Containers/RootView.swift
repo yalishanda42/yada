@@ -16,12 +16,13 @@ struct RootView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             TabBar(store: store)
-                .fullScreenCover(isPresented: Binding<Bool>(get: {
-                        viewStore.authScreenIsPresented
-                    }, set: {
-                        viewStore.send($0 ? .showAuthentication : .hideAuthentication)
-                    })
-                ) {
+                .fullScreenCover(isPresented: viewStore.binding(
+                    get: { $0.authScreenIsPresented },
+                    send: { $0
+                        ? .showAuthentication
+                        : .hideAuthentication
+                    }
+                )) {
                     AuthenticationView(
                         cancelAction: {
                             viewStore.send(.hideAuthentication)
