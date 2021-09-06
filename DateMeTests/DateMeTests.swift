@@ -26,41 +26,51 @@ class DateMeTests: XCTestCase {
     // MARK: - Unit Tests: Reducer
     
     func testPresentAuthenticationScreen() throws {
-        let store = Self.mockStore(initialState: .init(authScreenIsPresented: false))
-        store.assert(.send(.showAuthentication, { $0.authScreenIsPresented = true }))
+        let store = mockStore(initialState: .init(authScreenIsPresented: false))
+        store.send(.showAuthentication) {
+            $0.authScreenIsPresented = true
+        }
     }
 
     func testHideAuthenticationScreen() throws {
-        let store = Self.mockStore(initialState: .init(authScreenIsPresented: true))
-        store.assert(.send(.hideAuthentication, { $0.authScreenIsPresented = false }))
+        let store = mockStore(initialState: .init(authScreenIsPresented: true))
+        store.send(.hideAuthentication) {
+            $0.authScreenIsPresented = false
+        }
     }
     
     func testPresentAlert() throws {
-        let store = Self.mockStore(initialState: .init(alertIsPresented: false))
+        let store = mockStore(initialState: .init(alertIsPresented: false))
         let message = "Test message 123"
-        store.assert(.send(.showAlert(message: message), {
+        store.send(.showAlert(message: message)) {
             $0.alertIsPresented = true
             $0.alertTextMessage = message
-        }))
+        }
     }
     
     func testDismissAlert() throws {
-        let store = Self.mockStore(initialState: .init(alertIsPresented: true))
-        store.assert(.send(.hideAlert, { $0.alertIsPresented = false }))
+        let store = mockStore(initialState: .init(alertIsPresented: true))
+        store.send(.hideAlert) {
+            $0.alertIsPresented = false
+        }
     }
     
     func testTapSettings() throws {
-        let store = Self.mockStore(initialState: .init(settingsAreShown: false))
-        store.assert(.send(.showSettings, { $0.settingsAreShown = true }))
+        let store = mockStore(initialState: .init(settingsAreShown: false))
+        store.send(.showSettings) {
+            $0.settingsAreShown = true
+        }
     }
     
     func testPopBackSettings() throws {
-        let store = Self.mockStore(initialState: .init(settingsAreShown: true))
-        store.assert(.send(.hideSettings, { $0.settingsAreShown = false }))
+        let store = mockStore(initialState: .init(settingsAreShown: true))
+        store.send(.hideSettings) {
+            $0.settingsAreShown = false
+        }
     }
     
     func testSelectTab() throws {
-        let store = Self.mockStore()
+        let store = mockStore()
         let tabs = AppState.Tab.allCases + [.default]
         store.assert(tabs.map { tab in
             .send(.selectTab(tab), { store in store.selectedTab = tab })
@@ -81,15 +91,17 @@ class DateMeTests: XCTestCase {
                         .eraseToAnyPublisher()
                 )
         )
-        let store = Self.mockStore(initialState: state, mockServices: services)
+        let store = mockStore(initialState: state, mockServices: services)
         
         let expectedUserState: AppState.UserState = .authenticated(.init(with: info, from: guestState))
         
-        store.assert([
-            .send(action),
-            .receive(.authenticationSuccess(info), { $0.user = expectedUserState }),
-            .receive(.hideAuthentication, { $0.authScreenIsPresented = false }),
-        ])
+        store.send(action)
+        store.receive(.authenticationSuccess(info)) {
+            $0.user = expectedUserState
+        }
+        store.receive(.hideAuthentication) {
+            $0.authScreenIsPresented = false
+        }
     }
     
     func testLoginError() throws {
@@ -104,15 +116,13 @@ class DateMeTests: XCTestCase {
                         .eraseToAnyPublisher()
                 )
         )
-        let store = Self.mockStore(initialState: state, mockServices: services)
+        let store = mockStore(initialState: state, mockServices: services)
         
-        store.assert([
-            .send(action),
-            .receive(.showAlert(message: error.localizedErrorMessage), {
-                $0.alertIsPresented = true
-                $0.alertTextMessage = error.localizedErrorMessage
-            }),
-        ])
+        store.send(action)
+        store.receive(.showAlert(message: error.localizedErrorMessage)) {
+            $0.alertIsPresented = true
+            $0.alertTextMessage = error.localizedErrorMessage
+        }
     }
     
     func testSignUpSuccess() throws {
@@ -132,15 +142,17 @@ class DateMeTests: XCTestCase {
                 )
         )
         
-        let store = Self.mockStore(initialState: state, mockServices: services)
+        let store = mockStore(initialState: state, mockServices: services)
         
         let expectedUserState: AppState.UserState = .authenticated(.init(with: info, from: guestState))
         
-        store.assert([
-            .send(action),
-            .receive(.authenticationSuccess(info), { $0.user = expectedUserState }),
-            .receive(.hideAuthentication, { $0.authScreenIsPresented = false }),
-        ])
+        store.send(action)
+        store.receive(.authenticationSuccess(info)) {
+            $0.user = expectedUserState
+        }
+        store.receive(.hideAuthentication) {
+            $0.authScreenIsPresented = false
+        }
     }
     
     func testSignUpErrorPasswordsEqual() throws {
@@ -152,15 +164,13 @@ class DateMeTests: XCTestCase {
         let action: AppAction = .signUp(email: email, password: password, passwordRepeated: password2)
         let services = MockServiceDependencies()
         
-        let store = Self.mockStore(initialState: state, mockServices: services)
+        let store = mockStore(initialState: state, mockServices: services)
         
-        store.assert([
-            .send(action),
-            .receive(.showAlert(message: error.localizedErrorMessage), {
-                $0.alertIsPresented = true
-                $0.alertTextMessage = error.localizedErrorMessage
-            }),
-        ])
+        store.send(action)
+        store.receive(.showAlert(message: error.localizedErrorMessage)) {
+            $0.alertIsPresented = true
+            $0.alertTextMessage = error.localizedErrorMessage
+        }
     }
     
     func testSignUpErrorEmailInUse() throws {
@@ -178,20 +188,18 @@ class DateMeTests: XCTestCase {
                 )
         )
         
-        let store = Self.mockStore(initialState: state, mockServices: services)
+        let store = mockStore(initialState: state, mockServices: services)
         
-        store.assert([
-            .send(action),
-            .receive(.showAlert(message: error.localizedErrorMessage), {
-                $0.alertIsPresented = true
-                $0.alertTextMessage = error.localizedErrorMessage
-            }),
-        ])
+        store.send(action)
+        store.receive(.showAlert(message: error.localizedErrorMessage)) {
+            $0.alertIsPresented = true
+            $0.alertTextMessage = error.localizedErrorMessage
+        }
     }
     
     // MARK: - Helpers
     
-    static func mockStore(
+    private func mockStore(
         initialState: AppState = .init(),
         mockServices: MockServiceDependencies = .init()
     ) -> TestStore<AppState, AppState, AppAction, AppAction, ServiceDependencies> {
