@@ -9,40 +9,55 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>45</integer>
+			<integer>42</integer>
 		</dict>
 		<key>CustomDump (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>46</integer>
+			<integer>43</integer>
 		</dict>
 		<key>CustomDump (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>44</integer>
+			<integer>41</integer>
 		</dict>
 		<key>Date Me.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>DateMeCore.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>47</integer>
+		</dict>
+		<key>DateMeCoreUnitTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>49</integer>
+		</dict>
+		<key>DateMeServices.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>48</integer>
+		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>34</integer>
+			<integer>45</integer>
 		</dict>
 		<key>Promises (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>35</integer>
+			<integer>46</integer>
 		</dict>
 		<key>Promises (Playground) 3.xcscheme</key>
 		<dict>
@@ -70,7 +85,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>33</integer>
+			<integer>44</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -81,6 +96,16 @@
 			<true/>
 		</dict>
 		<key>7411BF1B24C4C51F00F90E81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74287BC726E6B50C00ADD51D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74287C6326E6C4CF00ADD51D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
