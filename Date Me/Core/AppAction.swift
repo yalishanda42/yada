@@ -11,7 +11,7 @@ import Foundation
 enum AppAction: Equatable {
     case logIn(email: String, password: String)
     case signUp(email: String, password: String, passwordRepeated: String)
-    case authenticationSuccess(AuthenticationInfo)
+    case authentication(Result<AuthenticationInfo, AuthenticationError>)
     
     case showAlert(message: String)
     case hideAlert

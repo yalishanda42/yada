@@ -8,9 +8,10 @@
 
 import Firebase
 import Combine
+import ComposableArchitecture
 
 class FirebaseAuthenticationService: AuthenticationService {
-    func signUpWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
+    func signUpWithEmail(email: String, password: String) -> Effect<AppAction.AuthenticationInfo, AuthenticationError> {
         return Future { event in
             Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
                 guard let self = self else { return }
@@ -21,10 +22,10 @@ class FirebaseAuthenticationService: AuthenticationService {
                 let info = self.retrieveAuthInfoFromFirebaseUserResult(result)
                 event(.success(info))
             }
-        }.eraseToAnyPublisher()
+        }.eraseToEffect()
     }
     
-    func logInWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
+    func logInWithEmail(email: String, password: String) -> Effect<AppAction.AuthenticationInfo, AuthenticationError> {
         return Future { event in
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
                 guard let self = self else { return }
@@ -35,7 +36,7 @@ class FirebaseAuthenticationService: AuthenticationService {
                 let info = self.retrieveAuthInfoFromFirebaseUserResult(result)
                 event(.success(info))
             }
-        }.eraseToAnyPublisher()
+        }.eraseToEffect()
     }
     
     private func retrieveAuthInfoFromFirebaseUserResult(_ result: AuthDataResult) -> AppAction.AuthenticationInfo {

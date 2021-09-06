@@ -86,17 +86,14 @@ class DateMeTests: XCTestCase {
         let info = AppAction.AuthenticationInfo()
         let services = MockServiceDependencies(
             authenticationService: MockAuthenticationService()
-                .when(\.mockedLoginWithEmail, returns: Just(info)
-                        .mapError { _ -> AuthenticationError in .unknown }
-                        .eraseToAnyPublisher()
-                )
+                .when(\.mockedLoginWithEmail, returns: Effect(value: info))
         )
         let store = mockStore(initialState: state, mockServices: services)
         
         let expectedUserState: AppState.UserState = .authenticated(.init(with: info, from: guestState))
         
         store.send(action)
-        store.receive(.authenticationSuccess(info)) {
+        store.receive(.authentication(.success(info))) {
             $0.user = expectedUserState
         }
         store.receive(.hideAuthentication) {
@@ -112,13 +109,12 @@ class DateMeTests: XCTestCase {
         let action: AppAction = .logIn(email: email, password: password)
         let services = MockServiceDependencies(
             authenticationService: MockAuthenticationService()
-                .when(\.mockedLoginWithEmail, returns: Fail(error: error)
-                        .eraseToAnyPublisher()
-                )
+                .when(\.mockedLoginWithEmail, returns: Effect(error: error))
         )
         let store = mockStore(initialState: state, mockServices: services)
         
         store.send(action)
+        store.receive(.authentication(.failure(error)))
         store.receive(.showAlert(message: error.localizedErrorMessage)) {
             $0.alertIsPresented = true
             $0.alertTextMessage = error.localizedErrorMessage
@@ -136,10 +132,7 @@ class DateMeTests: XCTestCase {
         let info = AppAction.AuthenticationInfo()
         let services = MockServiceDependencies(
             authenticationService: MockAuthenticationService()
-                .when(\.mockedSignUpWithEmail, returns: Just(info)
-                        .mapError { _ -> AuthenticationError in .unknown }
-                        .eraseToAnyPublisher()
-                )
+                .when(\.mockedSignUpWithEmail, returns: Effect(value: info))
         )
         
         let store = mockStore(initialState: state, mockServices: services)
@@ -147,7 +140,7 @@ class DateMeTests: XCTestCase {
         let expectedUserState: AppState.UserState = .authenticated(.init(with: info, from: guestState))
         
         store.send(action)
-        store.receive(.authenticationSuccess(info)) {
+        store.receive(.authentication(.success(info))) {
             $0.user = expectedUserState
         }
         store.receive(.hideAuthentication) {
@@ -183,14 +176,13 @@ class DateMeTests: XCTestCase {
         let action: AppAction = .signUp(email: email, password: password, passwordRepeated: password2)
         let services = MockServiceDependencies(
             authenticationService: MockAuthenticationService()
-                .when(\.mockedSignUpWithEmail, returns: Fail(error: error)
-                        .eraseToAnyPublisher()
-                )
+                .when(\.mockedSignUpWithEmail, returns: Effect(error: error))
         )
         
         let store = mockStore(initialState: state, mockServices: services)
         
         store.send(action)
+        store.receive(.authentication(.failure(error)))
         store.receive(.showAlert(message: error.localizedErrorMessage)) {
             $0.alertIsPresented = true
             $0.alertTextMessage = error.localizedErrorMessage

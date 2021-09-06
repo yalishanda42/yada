@@ -7,13 +7,14 @@
 //
 
 import Combine
+import ComposableArchitecture
 
 class PreviewAuthenticationService: AuthenticationService {
-    func signUpWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
-        return Just(.init(id: "id", email: "email@example.com", fullName: "Alexander Ignatov")).mapError { _ in .unknown }.eraseToAnyPublisher()
+    func signUpWithEmail(email: String, password: String) -> Effect<AppAction.AuthenticationInfo, AuthenticationError> {
+        return .init(value: .init(id: "id", email: "email@example.com", fullName: "Alexander Ignatov"))
     }
     
-    func logInWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError> {
-        return Just(.init(id: "id", email: "email@example.com", fullName: "Alexander Ignatov")).mapError { _ in .unknown }.eraseToAnyPublisher()
+    func logInWithEmail(email: String, password: String) -> Effect<AppAction.AuthenticationInfo, AuthenticationError> {
+        return .init(value: .init(id: "id", email: "email@example.com", fullName: "Alexander Ignatov"))
     }
 }

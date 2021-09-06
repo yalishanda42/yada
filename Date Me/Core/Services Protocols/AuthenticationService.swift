@@ -7,11 +7,12 @@
 //
 
 import Combine
+import ComposableArchitecture
 
 protocol AuthenticationService {    
-    func signUpWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError>
+    func signUpWithEmail(email: String, password: String) -> Effect<AppAction.AuthenticationInfo, AuthenticationError>
     
-    func logInWithEmail(email: String, password: String) -> AnyPublisher<AppAction.AuthenticationInfo, AuthenticationError>
+    func logInWithEmail(email: String, password: String) -> Effect<AppAction.AuthenticationInfo, AuthenticationError>
 }
 
 enum AuthenticationError: Error {

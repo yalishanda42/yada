@@ -20,26 +20,17 @@ enum AppReducer {
             return environment
                 .authenticationService
                 .logInWithEmail(email: email, password: password)
-                .map(AppAction.authenticationSuccess)
-                .catch { (error) -> AnyPublisher<AppAction, Never> in
-                    return Just(.showAlert(message: error.localizedErrorMessage))
-                        .eraseToAnyPublisher()
-                }
-                .eraseToEffect()
+                .catchToEffect(AppAction.authentication)
             
         case .signUp(email: let email, password: let password, passwordRepeated: let password2):
             guard password == password2 else {
                 return .init(value: .showAlert(message: AuthenticationError.passwordsDoNotMatch.localizedErrorMessage))
             }
+            
             return environment
                 .authenticationService
                 .signUpWithEmail(email: email, password: password)
-                .map(AppAction.authenticationSuccess)
-                .catch { (error) -> AnyPublisher<AppAction, Never> in
-                    return Just(.showAlert(message: error.localizedErrorMessage))
-                        .eraseToAnyPublisher()
-                }
-                .eraseToEffect()
+                .catchToEffect(AppAction.authentication)
             
         case .showAlert(message: let message):
             state.alertTextMessage = message
@@ -64,7 +55,7 @@ enum AppReducer {
         case .hideSettings:
             state.settingsAreShown = false
             
-        case .authenticationSuccess(let userInfo):
+        case .authentication(.success(let userInfo)):
             switch state.user {
             case .guest(let oldData):
                 // migrate guest to auth
@@ -73,12 +64,14 @@ enum AppReducer {
                 state.user = .authenticated(.init(with: userInfo))
             }
             return .init(value: .hideAuthentication)
+        
+        case .authentication(.failure(let error)):
+            return .init(value: .showAlert(message: error.localizedErrorMessage))
         }
         
         return .none
     }
 }
-
 // MARK: - Error Message
 
 extension AuthenticationError {
