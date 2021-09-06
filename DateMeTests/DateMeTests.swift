@@ -13,19 +13,6 @@ import ComposableArchitecture
 
 class DateMeTests: XCTestCase {
     
-    // MARK: - Properties
-    
-    static func mockStore(
-        initialState: AppState = .init(),
-        mockServices: MockServiceDependencies = .init()
-    ) -> TestStore<AppState, AppState, AppAction, AppAction, ServiceDependencies> {
-        .init(
-            initialState: initialState,
-            reducer: AppReducer.reduce,
-            environment: mockServices as ServiceDependencies
-        )
-    }
-    
     // MARK: - Set up
 
     override func setUpWithError() throws {
@@ -200,5 +187,18 @@ class DateMeTests: XCTestCase {
                 $0.alertTextMessage = error.localizedErrorMessage
             }),
         ])
+    }
+    
+    // MARK: - Helpers
+    
+    static func mockStore(
+        initialState: AppState = .init(),
+        mockServices: MockServiceDependencies = .init()
+    ) -> TestStore<AppState, AppState, AppAction, AppAction, ServiceDependencies> {
+        .init(
+            initialState: initialState,
+            reducer: AppReducer.reduce,
+            environment: mockServices
+        )
     }
 }

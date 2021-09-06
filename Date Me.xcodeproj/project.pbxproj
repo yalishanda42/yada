@@ -118,7 +118,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		74016C4B24CDD1B400E1C96E /* App */ = {
+		74016C4B24CDD1B400E1C96E /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				74016C5224CDD43E00E1C96E /* AppReducer.swift */,
@@ -127,7 +127,7 @@
 				74824B9824C8502000008B49 /* ServiceDependencies.swift */,
 				74824B9E24C8507F00008B49 /* Services Protocols */,
 			);
-			path = App;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		7411BEFD24C4C51D00F90E81 = {
@@ -151,11 +151,9 @@
 		7411BF0824C4C51D00F90E81 /* Date Me */ = {
 			isa = PBXGroup;
 			children = (
-				7443CC3924CA2FC7008830C7 /* DateMeApp.swift */,
-				74016C4B24CDD1B400E1C96E /* App */,
+				74016C4B24CDD1B400E1C96E /* Core */,
 				74824B9724C84FD900008B49 /* Services */,
-				74CEE85424D4C89500898215 /* Views */,
-				7411BF3A24C4F05400F90E81 /* Extensions */,
+				74CEE85424D4C89500898215 /* SwiftUIApp */,
 				7411BF3324C4EF3D00F90E81 /* Supporting Files */,
 				7411BF1124C4C51F00F90E81 /* Preview Content */,
 				7411BF1724C4C51F00F90E81 /* Info.plist */,
@@ -259,6 +257,18 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		74BA45D526E699AE002CFC79 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				74C29C3025F40E5500524B91 /* Containers */,
+				74C29C3125F40E6600524B91 /* Renderers */,
+				7411BF3D24C62D2F00F90E81 /* MessagesView.swift */,
+				7411BF3F24C62D3E00F90E81 /* MatchView.swift */,
+				748587DE259E13B00089BF2D /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		74C29C3025F40E5500524B91 /* Containers */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,16 +287,14 @@
 			path = Renderers;
 			sourceTree = "<group>";
 		};
-		74CEE85424D4C89500898215 /* Views */ = {
+		74CEE85424D4C89500898215 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
-				74C29C3025F40E5500524B91 /* Containers */,
-				74C29C3125F40E6600524B91 /* Renderers */,
-				7411BF3D24C62D2F00F90E81 /* MessagesView.swift */,
-				7411BF3F24C62D3E00F90E81 /* MatchView.swift */,
-				748587DE259E13B00089BF2D /* SettingsView.swift */,
+				7443CC3924CA2FC7008830C7 /* DateMeApp.swift */,
+				74BA45D526E699AE002CFC79 /* Views */,
+				7411BF3A24C4F05400F90E81 /* Extensions */,
 			);
-			path = Views;
+			path = SwiftUIApp;
 			sourceTree = "<group>";
 		};
 		74D53AE924C8625700D4C29A /* App */ = {
