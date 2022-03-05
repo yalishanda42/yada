@@ -9,15 +9,12 @@ on:
 
 jobs:
   build:
-    name: Build the iOS app in Debug configuration without codesigning
+    name: Build the iOS app
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Install Xcode Tools
-        run: xcode-select --install
 
       - name: Install Fastlane
         run: brew install fastlane
@@ -32,9 +29,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Install Xcode Tools
-        run: xcode-select --install
 
       - name: Install Fastlane
         run: brew install fastlane
