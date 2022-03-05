@@ -19,6 +19,9 @@ jobs:
       - name: Install Fastlane
         run: brew install fastlane
 
+      - name: Create GoogleService-Info.plist
+        run: echo "$GOOGLE_INFO_PLIST" | base64 -d > YadaSwiftUIApp/GoogleService-Info.plist
+
       - name: Build app
         run: fastlane build
 
