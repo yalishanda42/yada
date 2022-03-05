@@ -1,0 +1,24 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build the iOS app in debug configuration without codesigning"
+  lane :build do
+    build_ios_app(
+      configuration: "Debug",
+      skip_codesigning: true,
+      skip_archive: true
+    )
+  end
+
+  desc "Run tests"
+  lane :test do
+    spm(
+      command: "test",
+      package_path: "Yada",
+      enable_code_coverage: true
+    )
+  end
+end
