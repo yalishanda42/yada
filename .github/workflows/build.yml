@@ -1,0 +1,42 @@
+name: Build and test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build the iOS app
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Fastlane
+        run: brew install fastlane
+
+      - name: Create GoogleService-Info.plist
+        env:
+          GOOGLE_INFO_PLIST: ${{ secrets.GOOGLE_INFO_PLIST }}
+        run: echo "$GOOGLE_INFO_PLIST" | base64 -d > YadaSwiftUIApp/GoogleService-Info.plist
+
+      - name: Build app
+        run: fastlane build
+
+  test:
+    name: Run tests
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Fastlane
+        run: brew install fastlane
+
+      - name: Run tests
+        run: fastlane test
